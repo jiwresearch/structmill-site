@@ -1,0 +1,335 @@
+:root {
+  --paper: #F5F0E6;
+  --paper-deep: #ECE5D4;
+  --ink: #1A1A1A;
+  --ink-soft: #3A3A36;
+  --moss: #355E3B;
+  --moss-deep: #234229;
+  --moss-faint: #D9E2D7;
+  --rule: rgba(53, 94, 59, 0.25);
+
+  --font-display: "Zilla Slab", "Roboto Slab", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+
+  --max: 64rem;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+a:hover {
+  color: var(--moss-deep);
+  border-bottom-color: var(--moss);
+}
+
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+/* ───────── top bar ───────── */
+
+.topbar {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.5rem var(--pad);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  color: var(--moss);
+  border-bottom: none;
+}
+
+.topnav a {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  border-bottom: none;
+}
+
+.topnav a:hover { color: var(--moss); }
+
+/* ───────── hero ───────── */
+
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 0 4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-lede {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.75rem);
+  color: var(--ink-soft);
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--moss);
+  margin: 0;
+}
+
+.hero-title span {
+  display: block;
+}
+
+.hero-tag {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.75rem);
+  color: var(--ink-soft);
+  margin: 1.5rem 0 0;
+}
+
+.hero-foot {
+  margin: 4rem 0 0;
+  font-size: 0.95rem;
+}
+
+.hero-foot a {
+  color: var(--ink-soft);
+  border-bottom: none;
+}
+
+.hero-foot a:hover { color: var(--moss); }
+
+/* ───────── sections ───────── */
+
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--moss);
+  margin: 4rem 0 1.5rem;
+}
+
+.section-deck {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0 0 4rem;
+  max-width: 38ch;
+}
+
+.cost { padding-top: 4rem; }
+
+/* ───────── subsections ───────── */
+
+.sub {
+  position: relative;
+  padding: 3rem 0 3rem;
+  border-top: 1px solid var(--rule);
+}
+
+.sub:first-of-type {
+  border-top: 1px solid var(--rule);
+}
+
+.sub-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--moss);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.sub-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--moss);
+  margin: 0 0 1.5rem;
+}
+
+.sub-lead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1.5vw + 0.5rem, 1.5rem);
+  line-height: 1.35;
+  color: var(--ink);
+  margin: 0 0 1.5rem;
+  max-width: 38ch;
+}
+
+.sub p {
+  max-width: 42rem;
+  margin: 0 0 1.25rem;
+}
+
+.sub sup a {
+  font-size: 0.7em;
+  border-bottom: none;
+}
+
+/* ───────── counter ───────── */
+
+.counter {
+  margin: 2.5rem 0 0;
+  padding: 1.75rem 1.75rem 1.5rem;
+  background: var(--moss-faint);
+  border-left: 3px solid var(--moss);
+  max-width: 42rem;
+}
+
+.counter-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.counter-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--moss-deep);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.counter-note {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* ───────── why / closing ───────── */
+
+.why {
+  padding: 4rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-top: 4rem;
+}
+
+.why p {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2vw + 0.4rem, 1.75rem);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 38ch;
+  margin: 0;
+}
+
+.closing {
+  padding: 6rem 0 4rem;
+  text-align: left;
+}
+
+.closing-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--moss);
+  margin: 0 0 1.5rem;
+  max-width: 22ch;
+}
+
+.closing-body {
+  font-size: 1.1rem;
+  max-width: 38rem;
+  margin: 0 0 2rem;
+  color: var(--ink-soft);
+}
+
+.closing-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+
+.closing-links li {
+  margin: 0.5rem 0;
+}
+
+/* ───────── footer ───────── */
+
+.footnotes {
+  padding: 3rem 0 4rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.footnotes ol {
+  padding-left: 1.25rem;
+  max-width: 50rem;
+}
+
+.footnotes li {
+  margin-bottom: 0.85rem;
+  line-height: 1.5;
+}
+
+.footnotes em { font-style: italic; }
+
+.legal {
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
+
+/* ───────── responsive ───────── */
+
+@media (max-width: 32rem) {
+  body { font-size: 17px; }
+  .topbar { padding: 1.25rem var(--pad); }
+  .hero { min-height: 70vh; padding: 4rem 0 3rem; }
+  .hero-foot { margin-top: 3rem; }
+  .counter { padding: 1.25rem; }
+}

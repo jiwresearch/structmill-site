@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Struct-Mill — The cost of cutting on-site</title>
+  <meta name="description" content="$19 billion of lumber is cut, trucked, and thrown away on US jobsites every year. Struct-Mill is rethinking where the cut happens." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="wordmark" href="/">Struct-Mill</a>
+    <nav class="topnav">
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-lede">$19 billion of lumber.</p>
+      <h1 class="hero-title">
+        <span>Cut.</span>
+        <span>Trucked.</span>
+        <span>Thrown away.</span>
+      </h1>
+      <p class="hero-tag">Every year.</p>
+      <p class="hero-foot"><a href="#cost">The cost of cutting on-site &darr;</a></p>
+    </section>
+
+    <section id="cost" class="cost">
+      <h2 class="section-eyebrow">The cost of cutting on-site</h2>
+      <p class="section-deck">
+        Almost every board that frames a US house is measured and cut by hand
+        on a jobsite. That practice carries three bills nobody talks about together.
+      </p>
+
+      <article class="sub" id="waste">
+        <div class="sub-num">01</div>
+        <h3 class="sub-title">Waste</h3>
+        <p class="sub-lead">
+          Eight to twelve percent of every lumber order ends up in a dumpster.
+        </p>
+        <p>
+          The US residential lumber supply chain processes more than
+          $160&nbsp;billion in materials each year.<sup><a href="#fn1">1</a></sup>
+          Roughly one out of every eight boards is cut short, offcut and forgotten,
+          or trimmed past the point of reuse — about
+          <strong>$19&nbsp;billion of lumber, every year</strong>.
+        </p>
+        <p>
+          That wood is logged, milled, dried, graded, trucked across the country,
+          and stocked on a yard — only to be cut once, thrown in a bin, and hauled to a landfill.
+        </p>
+      </article>
+
+      <article class="sub" id="time">
+        <div class="sub-num">02</div>
+        <h3 class="sub-title">Time</h3>
+        <p class="sub-lead">
+          Pre-cut framing saves two to six days on every house.
+        </p>
+        <p>
+          A HUD field study of builders who switched to pre-cut and panelized wall
+          systems found framing cycle times dropped by 2–6 days per home, with crew
+          sizes reduced by about two workers — savings drawn directly from eliminating
+          on-site measuring, cutting, and fastening.<sup><a href="#fn2">2</a></sup>
+        </p>
+        <p>
+          That is not surprising once you look at the underlying production rates.
+          Standard wall framing runs about 0.036–0.046 man-hours per linear foot,
+          or roughly 2–3 minutes per linear foot for layout, measuring, cutting,
+          and assembly combined.<sup><a href="#fn3">3</a></sup> A framer averages
+          ten to thirteen studs installed per labor-hour — about four to six minutes
+          per stud.<sup><a href="#fn4">4</a></sup> The measuring and cutting step
+          is a real slice of that, repeated thousands of times per house.
+        </p>
+
+        <div class="counter" aria-live="polite">
+          <div class="counter-label">Hours of jobsite measuring and cutting in the US since you opened this page</div>
+          <div class="counter-value" id="counter">0</div>
+          <div class="counter-note">
+            Estimated, based on US housing starts and the production rates cited above.
+          </div>
+        </div>
+      </article>
+
+      <article class="sub" id="safety">
+        <div class="sub-num">03</div>
+        <h3 class="sub-title">Safety &amp; precision</h3>
+        <p class="sub-lead">
+          About 30,000 table-saw injuries are treated in US emergency rooms every year.
+          Roughly 4,300 of them are amputations.
+        </p>
+        <p>
+          That is the CPSC's own estimate, drawn from years of NEISS hospital
+          data and re-cited in the 2023 federal rulemaking on table-saw blade
+          contact.<sup><a href="#fn5">5</a></sup> The agency does not split jobsite
+          from home use cleanly, but residential framing is a meaningful share —
+          carpenters log thousands of nonfatal injuries with days away from work
+          every year.<sup><a href="#fn6">6</a></sup>
+        </p>
+        <p>
+          Precision is the quieter version of the same problem. A cut made on a
+          calibrated indoor machine does not depend on the weather, the wind,
+          a sawhorse that is not quite level, or how tired the framer is at
+          three in the afternoon. A cut made on a jobsite does.
+        </p>
+      </article>
+    </section>
+
+    <section id="why" class="why">
+      <h2 class="section-eyebrow">Why this persists</h2>
+      <p>
+        Manual measure-and-cut is the default because no part of the building
+        material supply chain is engineered to do it any other way. Offcuts are
+        abandoned because nothing tracks them. Saws live on jobsites because
+        nobody has built the alternative — at the lumberyard, in the hands of
+        the people already moving the wood.
+      </p>
+    </section>
+
+    <section id="contact" class="closing">
+      <h2 class="closing-title">Struct-Mill exists to end this.</h2>
+      <p class="closing-body">
+        We are building automated pre-cutting that lives at the lumberyard,
+        so the right pieces — and only the right pieces — arrive on the truck.
+      </p>
+      <ul class="closing-links">
+        <li><a href="mailto:hello@structmill.com">hello@structmill.com</a></li>
+        <li><a href="https://github.com/structmill" rel="noopener">github.com/structmill</a></li>
+      </ul>
+    </section>
+
+    <footer class="footnotes">
+      <h2 class="section-eyebrow">Sources</h2>
+      <ol>
+        <li id="fn1">
+          US residential lumber supply chain size and waste share. Internal
+          market sizing referencing LMC ($7B+ independent-yard segment) within
+          a $160B+ annual residential materials flow; 8–12% waste benchmark from
+          panelized/pre-cut industry studies cross-checked against
+          NAHB <em>Cost of Constructing a Home, 2024</em>.
+          <a href="https://www.nahb.org/news-and-economics/housing-economics-plus/special-studies/special-studies-pages/cost-of-constructing-a-home-in-2024" rel="noopener">nahb.org</a>
+        </li>
+        <li id="fn2">
+          Ghosh, Bigelow &amp; Patel, "Use of Panelized Components in Homebuilding,"
+          <em>Cityscape: A Journal of Policy Development and Research</em>,
+          U.S. Department of Housing and Urban Development, Vol. 23 No. 3, 2021.
+          <a href="https://www.huduser.gov/portal/periodicals/cityscpe/vol23num3/ch15.pdf" rel="noopener">huduser.gov</a>
+        </li>
+        <li id="fn3">
+          Wall framing production rate, ~0.036–0.046 man-hours per linear foot.
+          Methvin Production Rates.
+          <a href="https://methvin.com" rel="noopener">methvin.com</a>
+        </li>
+        <li id="fn4">
+          Residential framing productivity, ~10–13 studs installed per labor-hour.
+          Donizo construction productivity rates; cross-checked with Construct
+          Estimates and Estimation Pro production tables.
+        </li>
+        <li id="fn5">
+          U.S. Consumer Product Safety Commission, <em>Safety Standard Addressing
+          Blade-Contact Injuries on Table Saws</em>, Federal Register, November 1, 2023.
+          <a href="https://www.federalregister.gov/documents/2023/11/01/2023-23898/safety-standard-addressing-blade-contact-injuries-on-table-saws" rel="noopener">federalregister.gov</a>
+        </li>
+        <li id="fn6">
+          Center for Construction Research and Training (CPWR), <em>The Construction
+          Chart Book</em>, BLS SOII-derived carpenter injury counts.
+          <a href="https://www.cpwr.com/research/data-center/the-construction-chart-book/" rel="noopener">cpwr.com</a>
+        </li>
+      </ol>
+      <p class="legal">© Struct-Mill LLC. Built in Pittsburgh and Morgantown.</p>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
