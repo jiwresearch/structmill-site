@@ -26,5 +26,5 @@ python3 -m http.server 8000
 
 ## Email
 
-The site links to `hello@structmill.com`. Set up a forwarder from your
+The site links to `joseph@structmill.com`. Set up a forwarder from your
 domain registrar (or Cloudflare Email Routing) to your real inbox.

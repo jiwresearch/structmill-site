@@ -1,20 +1,18 @@
-// Ticking counter — hours of US jobsite measuring-and-cutting labor accumulated
-// since the page was opened.
+// ─────────────────────────────────────────────────────────────
+// Live counter — hours of US jobsite measuring-and-cutting labor
+// accumulated since the page was opened.
 //
-// Rate is calculated from:
+// Rate derivation:
 //   ~1.4M annual US housing starts (Census/NAHB)
 //   × ~32 hours of on-site measure-and-cut framing labor per home
-//     (derived from HUD Cityscape 2021 pre-cut framing study showing 2–6
-//      days saved with a ~5-person crew, ~40% of which is measure-and-cut)
+//     (from HUD Cityscape 2021 pre-cut framing study — 2–6 days saved
+//      with ~5-person crew, of which ~40% is measure-and-cut)
 //   ÷ seconds in a year
-// ≈ 1.42 hours per second nationwide.
-//
-// We round to 1.4 hr/sec — defensible, conservative, easy to footnote.
+// ≈ 1.42 hours per second nationwide → rounded to 1.4 hr/sec.
+// ─────────────────────────────────────────────────────────────
 
 const HOURS_PER_SECOND = 1.4;
 const start = performance.now();
-
-const el = document.getElementById("counter");
 
 function formatHours(h) {
   return h.toLocaleString("en-US", {
@@ -23,16 +21,9 @@ function formatHours(h) {
   });
 }
 
-function tick() {
-  const elapsed = (performance.now() - start) / 1000;
-  const hours = elapsed * HOURS_PER_SECOND;
-  el.textContent = formatHours(hours);
-  requestAnimationFrame(tick);
-}
+const liveCounterEl = document.getElementById("counter");
 
-if (el) {
-  // Pause counter when the page is hidden so it doesn't drift when
-  // the user comes back to a tab they left open all day.
+if (liveCounterEl) {
   let hiddenAt = null;
   let pausedSeconds = 0;
 
@@ -45,15 +36,74 @@ if (el) {
     }
   });
 
-  function tickPaused() {
-    if (document.hidden) {
-      requestAnimationFrame(tickPaused);
-      return;
+  function tick() {
+    if (!document.hidden) {
+      const elapsed = (performance.now() - start) / 1000 - pausedSeconds;
+      liveCounterEl.textContent = formatHours(elapsed * HOURS_PER_SECOND);
     }
-    const elapsed = (performance.now() - start) / 1000 - pausedSeconds;
-    el.textContent = formatHours(elapsed * HOURS_PER_SECOND);
-    requestAnimationFrame(tickPaused);
+    requestAnimationFrame(tick);
   }
 
-  requestAnimationFrame(tickPaused);
+  requestAnimationFrame(tick);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Scroll-reveal: fade up elements with [data-reveal] when they
+// enter the viewport. Count-up any [data-count-to] inside them.
+// ─────────────────────────────────────────────────────────────
+
+function easeOutCubic(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function animateCount(el) {
+  const target = parseFloat(el.dataset.countTo);
+  const duration = parseFloat(el.dataset.countDuration) || 1500;
+  const startTime = performance.now();
+
+  function frame(now) {
+    const t = Math.min(1, (now - startTime) / duration);
+    const eased = easeOutCubic(t);
+    const value = target * eased;
+    el.textContent = Math.round(value).toLocaleString("en-US");
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function revealOnScroll() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const targets = document.querySelectorAll("[data-reveal], .pile");
+
+  if (reduceMotion) {
+    // No animation — just show everything and set final numbers.
+    targets.forEach(el => {
+      el.classList.add("is-visible");
+      el.querySelectorAll("[data-count-to]").forEach(c => {
+        c.textContent = parseFloat(c.dataset.countTo).toLocaleString("en-US");
+      });
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add("is-visible");
+
+      el.querySelectorAll("[data-count-to]").forEach(animateCount);
+
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.25, rootMargin: "0px 0px -10% 0px" });
+
+  targets.forEach(el => observer.observe(el));
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", revealOnScroll);
+} else {
+  revealOnScroll();
 }
