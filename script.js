@@ -33,17 +33,18 @@ function revealOnScroll() {
 // is published as the custom property --p. The two figures read it
 // directly in CSS, so no per-frame style thrash on the SVGs.
 //
-// The middle of the travel is held as a deliberate pause: the swap
-// happens over the centre 45% of the scroll, so each state gets a
-// beat on screen before and after the transition.
+// The swap runs over the centre 72% of the travel, with a 14% hold at
+// each end so both states register before and after the transition.
+// Widening this band was the fix for dead scroll: at 45% most of the
+// section's travel did nothing.
 // ─────────────────────────────────────────────────────────────
 
 function swapOnScroll() {
   const section = document.querySelector(".swap");
   if (!section || reduceMotion) return;
 
-  const SWAP_START = 0.28;
-  const SWAP_END = 0.72;
+  const SWAP_START = 0.14;
+  const SWAP_END = 0.86;
 
   let ticking = false;
 

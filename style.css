@@ -252,7 +252,7 @@ main {
 
 .swap {
   position: relative;
-  height: 260vh;
+  height: 200vh;
 }
 
 .swap-stage {
@@ -294,8 +294,7 @@ main {
   opacity: 0.4;
 }
 
-.heap rect,
-.scrap rect {
+.heap rect {
   fill: none;
   stroke: var(--moss);
   stroke-width: 1.5;
@@ -365,39 +364,6 @@ main {
 .cap-after  { opacity: calc((var(--p, 0) - 0.54) * 12); }
 
 .swap-fig, .swap-cap { transition: opacity 90ms linear; }
-
-/* ───────── what's left over ───────── */
-
-.leftover {
-  padding: clamp(3rem, 8vw, 6rem) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.leftover-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: end;
-  margin-top: 2.5rem;
-}
-
-.leftover-fig { margin: 0; }
-
-.leftover-svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.leftover-cap { margin-top: 0.75rem; }
-
-.leftover-state {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--moss);
-}
 
 /* ───────── three ideas ───────── */
 
@@ -635,8 +601,7 @@ main {
 /* ───────── responsive ───────── */
 
 @media (max-width: 46rem) {
-  .leftover-grid { grid-template-columns: 1fr; }
-  .swap { height: 220vh; }
+  .swap { height: 170vh; }
   .swap-svg { max-height: 46vh; }
 }
 
