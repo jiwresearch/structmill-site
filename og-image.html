@@ -16,40 +16,31 @@
     }
     .wrap{
       width:100%;height:100%;
-      padding:80px 100px;
+      padding:70px 100px;
       display:flex;flex-direction:column;justify-content:space-between;
     }
     .wordmark{
-      display:flex;align-items:center;gap:24px;
+      display:flex;align-items:center;gap:22px;
       font-weight:700;
-      font-size:64px;
+      font-size:56px;
       letter-spacing:-0.02em;
       line-height:1;
     }
     .wordmark svg{
-      width:74px;height:66px;
+      width:64px;height:57px;
       flex-shrink:0;
+    }
+    .board{
+      display:block;
+      width:100%;
+      height:auto;
     }
     .hero{
       font-weight:700;
-      font-size:140px;
-      line-height:0.98;
+      font-size:76px;
+      line-height:1.02;
       letter-spacing:-0.025em;
-    }
-    .hero span{display:block;}
-    .lede{
-      font-weight:500;
-      font-size:36px;
-      color:#3A3A36;
-      margin-bottom:24px;
-      letter-spacing:-0.01em;
-    }
-    .tag{
-      font-weight:500;
-      font-size:36px;
-      color:#3A3A36;
-      margin-top:24px;
-      letter-spacing:-0.01em;
+      max-width:20ch;
     }
     .foot{
       display:flex;justify-content:space-between;align-items:baseline;
@@ -70,16 +61,28 @@
       </svg>
       <span>Structmill</span>
     </div>
-    <div>
-      <div class="lede">$19 billion of lumber.</div>
-      <div class="hero">
-        <span>Cut. Trucked.</span>
-        <span>Thrown away.</span>
-      </div>
-      <div class="tag">Every year.</div>
-    </div>
+
+    <svg class="board" viewBox="0 0 1000 150" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="h" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect width="8" height="8" fill="#ECE5D4"/>
+          <line x1="0" y1="0" x2="0" y2="8" stroke="#355E3B" stroke-width="1.5" opacity="0.38"/>
+        </pattern>
+      </defs>
+      <rect x="630" y="30" width="370" height="72" fill="url(#h)"/>
+      <rect x="0" y="30" width="630" height="72" fill="#355E3B"/>
+      <rect x="0" y="30" width="1000" height="72" fill="none" stroke="#234229" stroke-width="2"/>
+      <line x1="630" y1="16" x2="630" y2="116" stroke="#234229" stroke-width="2" stroke-dasharray="7 5"/>
+      <g font-family="ui-monospace, Menlo, monospace" font-size="17" letter-spacing="2" fill="#3A3A36">
+        <text x="315" y="140" text-anchor="middle">BECOMES A WALL</text>
+        <text x="815" y="140" text-anchor="middle" fill="#355E3B" opacity="0.75">THROWN AWAY</text>
+      </g>
+    </svg>
+
+    <div class="hero">Every board leaves something behind.</div>
+
     <div class="foot">
-      <div>The cost of cutting on-site.</div>
+      <div>Pre-cut framing, from the lumberyard.</div>
       <div class="url">structmill.com</div>
     </div>
   </div>

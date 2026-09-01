@@ -8,10 +8,20 @@
   --moss-faint: #D9E2D7;
   --rule: rgba(53, 94, 59, 0.25);
 
+  /* dark instrument tokens — shared with the demo panels */
+  --panel: #0D120E;
+  --panel-2: #141C15;
+  --hair: #2A3A2C;
+  --panel-fg: #DCE5DC;
+  --panel-dim: #8AA08D;
+  --moss-lit: #7FBD88;
+
   --font-display: "Zilla Slab", "Roboto Slab", Georgia, serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   --max: 64rem;
+  --wide: 82rem;
   --pad: clamp(1.25rem, 4vw, 3rem);
 }
 
@@ -42,20 +52,32 @@ a:hover {
 }
 
 main {
-  max-width: var(--max);
+  max-width: var(--wide);
   margin: 0 auto;
   padding: 0 var(--pad);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ───────── top bar ───────── */
 
 .topbar {
-  max-width: var(--max);
+  max-width: var(--wide);
   margin: 0 auto;
   padding: 1.5rem var(--pad);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .wordmark {
@@ -64,7 +86,7 @@ main {
   gap: 0.55em;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--moss);
@@ -78,8 +100,11 @@ main {
   color: var(--moss);
 }
 
-.logo-text {
-  display: inline-block;
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1.5rem;
 }
 
 .topnav a {
@@ -91,305 +116,477 @@ main {
 
 .topnav a:hover { color: var(--moss); }
 
-/* ───────── hero ───────── */
+/* ───────── shared section furniture ───────── */
 
-.hero {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 6rem 0 4rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.hero-lede {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.75rem);
-  color: var(--ink-soft);
-  margin: 0 0 1.5rem;
-  letter-spacing: -0.01em;
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(3rem, 9vw, 7rem);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
-  color: var(--moss);
-  margin: 0;
-}
-
-.hero-title span {
-  display: block;
-}
-
-.hero-tag {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.75rem);
-  color: var(--ink-soft);
-  margin: 1.5rem 0 0;
-}
-
-.hero-foot {
-  margin: 4rem 0 0;
-  font-size: 0.95rem;
-}
-
-.hero-foot a {
-  color: var(--ink-soft);
-  border-bottom: none;
-}
-
-.hero-foot a:hover { color: var(--moss); }
-
-/* ───────── sections ───────── */
-
-.section-eyebrow {
+.eyebrow {
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--moss);
-  margin: 4rem 0 1.5rem;
+  margin: 0 0 2.5rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--moss);
+  margin: 0 0 1.25rem;
 }
 
 .section-deck {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
-  line-height: 1.25;
-  color: var(--ink);
-  margin: 0 0 4rem;
-  max-width: 38ch;
-}
-
-.cost { padding-top: 4rem; }
-
-/* ───────── subsections ───────── */
-
-.sub {
-  position: relative;
-  padding: 3rem 0 3rem;
-  border-top: 1px solid var(--rule);
-}
-
-.sub:first-of-type {
-  border-top: 1px solid var(--rule);
-}
-
-.sub-num {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--moss);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
-}
-
-.sub-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  color: var(--moss);
-  margin: 0 0 1.5rem;
-}
-
-.sub-lead {
-  font-family: var(--font-display);
-  font-weight: 500;
   font-size: clamp(1.15rem, 1.5vw + 0.5rem, 1.5rem);
   line-height: 1.35;
-  color: var(--ink);
-  margin: 0 0 1.5rem;
-  max-width: 38ch;
-}
-
-.sub p {
-  max-width: 42rem;
-  margin: 0 0 1.25rem;
-}
-
-.sub sup a {
-  font-size: 0.7em;
-  border-bottom: none;
-}
-
-/* ───────── stat card (scroll-reveal big number) ───────── */
-
-.stat-card {
-  margin: 0 0 2.5rem;
-  padding: 2rem 0 2rem;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-}
-
-.stat-value {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(3.5rem, 10vw, 6.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  color: var(--moss);
-  font-variant-numeric: tabular-nums;
-}
-
-.stat-prefix,
-.stat-suffix {
-  font-weight: 600;
-}
-
-.stat-caption {
-  margin-top: 0.5rem;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.05rem, 1.5vw + 0.3rem, 1.35rem);
   color: var(--ink-soft);
-  max-width: 32ch;
-  line-height: 1.35;
+  margin: 0 0 3rem;
+  max-width: 44ch;
 }
 
-.stat-card-dual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-}
-
-@media (max-width: 38rem) {
-  .stat-card-dual { grid-template-columns: 1fr; gap: 2rem; }
-}
-
-/* scroll-reveal initial state — stat card fades up when in view */
-[data-reveal] {
+/* scroll-reveal — only armed when JS is running */
+.js [data-reveal] {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 600ms ease-out, transform 600ms ease-out;
+  transform: translateY(14px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
 }
 
-[data-reveal].is-visible {
+.js [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ───────── waste pile (SVG) ───────── */
+/* ───────── hero ───────── */
 
-.pile {
-  margin: 3rem 0 0;
-  padding: 0;
+.hero {
+  padding: clamp(2rem, 6vw, 5rem) 0 clamp(3rem, 8vw, 6rem);
+  border-bottom: 1px solid var(--rule);
 }
 
-.pile-svg {
+.board-fig {
+  margin: 0 0 clamp(2rem, 5vw, 3.5rem);
+}
+
+.board-svg {
   display: block;
   width: 100%;
-  max-width: 600px;
   height: auto;
 }
 
-.pile-ground {
+.board-used { fill: var(--moss); }
+
+.board-outline {
+  fill: none;
+  stroke: var(--moss-deep);
+  stroke-width: 2;
+}
+
+.board-cut {
+  stroke: var(--moss-deep);
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+
+.dim line {
+  stroke: var(--moss);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+.dim-label {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  fill: var(--ink-soft);
+}
+
+.dim-label.waste-label { fill: var(--moss); opacity: 0.75; }
+
+/* the solid portion wipes in from the left */
+.js .board-grow {
+  transform-box: fill-box;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1100ms cubic-bezier(.2,.7,.2,1) 120ms;
+}
+
+.js .board-fig.is-visible .board-grow { transform: scaleX(1); }
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--moss);
+  margin: 0;
+  max-width: 18ch;
+}
+
+.hero-tag {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 2vw + 0.4rem, 1.6rem);
+  color: var(--ink-soft);
+  margin: 1.5rem 0 0;
+  max-width: 42ch;
+}
+
+.scroll-cue {
+  margin: 3rem 0 0;
+  font-size: 0.95rem;
+}
+
+.scroll-cue a {
+  color: var(--ink-soft);
+  border-bottom: none;
+}
+
+.scroll-cue a:hover { color: var(--moss); }
+
+/* ───────── the swap: pile → sorted stacks ───────── */
+
+.swap {
+  position: relative;
+  height: 260vh;
+}
+
+.swap-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.swap-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 3vh, 2rem);
+}
+
+/* the two drawings share one cell and dissolve into each other */
+.swap-figs {
+  display: grid;
+  grid-template-areas: "stack";
+}
+
+.swap-figs > .swap-fig {
+  grid-area: stack;
+  margin: 0;
+}
+
+.swap-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 58vh;
+}
+
+.ground {
   stroke: var(--moss);
   stroke-width: 1.5;
   opacity: 0.4;
 }
 
-.board {
+.heap rect,
+.scrap rect {
   fill: none;
   stroke: var(--moss);
   stroke-width: 1.5;
-  opacity: 0;
-  transition: opacity 400ms ease-out;
+  opacity: 0.85;
 }
 
-.pile.is-visible .board { opacity: 0.85; }
-
-.pile.is-visible .board:nth-child(1)  { transition-delay: 0ms; }
-.pile.is-visible .board:nth-child(2)  { transition-delay: 70ms; }
-.pile.is-visible .board:nth-child(3)  { transition-delay: 140ms; }
-.pile.is-visible .board:nth-child(4)  { transition-delay: 210ms; }
-.pile.is-visible .board:nth-child(5)  { transition-delay: 280ms; }
-.pile.is-visible .board:nth-child(6)  { transition-delay: 350ms; }
-.pile.is-visible .board:nth-child(7)  { transition-delay: 420ms; }
-.pile.is-visible .board:nth-child(8)  { transition-delay: 490ms; }
-.pile.is-visible .board:nth-child(9)  { transition-delay: 560ms; }
-.pile.is-visible .board:nth-child(10) { transition-delay: 630ms; }
-.pile.is-visible .board:nth-child(11) { transition-delay: 700ms; }
-.pile.is-visible .board:nth-child(12) { transition-delay: 770ms; }
-.pile.is-visible .board:nth-child(13) { transition-delay: 840ms; }
-.pile.is-visible .board:nth-child(14) { transition-delay: 910ms; }
-.pile.is-visible .board:nth-child(15) { transition-delay: 980ms; }
-.pile.is-visible .board:nth-child(16) { transition-delay: 1050ms; }
-.pile.is-visible .board:nth-child(17) { transition-delay: 1120ms; }
-.pile.is-visible .board:nth-child(18) { transition-delay: 1190ms; }
-
-.pile-caption {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: var(--ink-soft);
-  font-style: italic;
+.bundle rect {
+  fill: var(--moss-faint);
+  stroke: var(--moss);
+  stroke-width: 1.5;
 }
 
-/* ───────── counter ───────── */
-
-.counter {
-  margin: 2.5rem 0 0;
-  padding: 1.75rem 1.75rem 1.5rem;
-  background: var(--moss-faint);
-  border-left: 3px solid var(--moss);
-  max-width: 42rem;
+.strap {
+  stroke: var(--moss-deep);
+  stroke-width: 2;
+  opacity: 0.65;
 }
 
-.counter-label {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.75rem;
+.tag {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  fill: var(--moss);
 }
 
-.counter-value {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--moss-deep);
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-  letter-spacing: -0.01em;
+.tag-dim { fill: var(--ink-soft); opacity: 0.8; }
+
+/* captions hard-swap rather than dissolve — overlapping text is unreadable */
+.swap-caps {
+  position: relative;
+  min-height: clamp(6rem, 13vh, 8.5rem);
 }
 
-.counter-note {
-  margin-top: 0.75rem;
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  font-style: italic;
-}
-
-/* ───────── why / closing ───────── */
-
-.why {
-  padding: 4rem 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  margin-top: 4rem;
-}
-
-.why p {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.25rem, 2vw + 0.4rem, 1.75rem);
-  line-height: 1.4;
-  color: var(--ink);
-  max-width: 38ch;
+.swap-cap {
+  position: absolute;
+  inset: 0;
   margin: 0;
 }
 
+.swap-state {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--moss);
+  margin-bottom: 0.5rem;
+}
+
+.swap-note {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 1.6vw + 0.4rem, 1.6rem);
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: 40ch;
+}
+
+/* crossfade driven by --p (0 → 1) from script.js.
+   Drawings dissolve across the whole band; captions switch over a narrow
+   window in the middle so only one is ever legible. */
+.swap-fig.swap-before { opacity: calc(1 - var(--p, 0)); }
+.swap-fig.swap-after  { opacity: var(--p, 0); }
+
+.cap-before { opacity: calc((0.46 - var(--p, 0)) * 12); }
+.cap-after  { opacity: calc((var(--p, 0) - 0.54) * 12); }
+
+.swap-fig, .swap-cap { transition: opacity 90ms linear; }
+
+/* ───────── what's left over ───────── */
+
+.leftover {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.leftover-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: end;
+  margin-top: 2.5rem;
+}
+
+.leftover-fig { margin: 0; }
+
+.leftover-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.leftover-cap { margin-top: 0.75rem; }
+
+.leftover-state {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--moss);
+}
+
+/* ───────── three ideas ───────── */
+
+.ideas {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.idea-grid {
+  list-style: none;
+  padding: 0;
+  margin: 3rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.idea-icon {
+  width: 84px;
+  height: 63px;
+  color: var(--moss);
+  margin-bottom: 1.25rem;
+}
+
+.idea-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.015em;
+  color: var(--moss);
+  margin: 0 0 0.75rem;
+}
+
+.idea-body {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+/* ───────── demo cards ───────── */
+
+.demos {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.demo-card {
+  display: block;
+  border: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1.25rem 1.25rem 1.75rem;
+  color: var(--ink);
+  background: transparent;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.demo-card:hover {
+  border-color: var(--moss);
+  transform: translateY(-3px);
+  color: var(--ink);
+}
+
+/* miniature of the dark instrument panel */
+.demo-mock {
+  background: var(--panel);
+  border: 1px solid var(--hair);
+  border-radius: 3px;
+  padding: 10px;
+  font-family: var(--font-mono);
+  color: var(--panel-fg);
+  margin-bottom: 1.5rem;
+}
+
+.mock-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--panel-dim);
+  background: var(--panel-2);
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  padding: 6px 8px;
+  margin-bottom: 10px;
+}
+
+.mock-strip b { color: var(--panel-fg); font-weight: 600; }
+
+.mock-keys {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.mock-keys span {
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  padding: 7px 8px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--panel-fg);
+  background: #1C271D;
+}
+
+.mock-bars { display: grid; gap: 6px; }
+
+.mock-bar {
+  height: 16px;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  overflow: hidden;
+  background: repeating-linear-gradient(45deg, #18211A, #18211A 4px, #202B22 4px, #202B22 8px);
+}
+
+.mock-bar i {
+  display: block;
+  height: 100%;
+  background: #3B6842;
+}
+
+.mock-tiles {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.mock-tiles span {
+  height: 28px;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  background: #1C271D;
+}
+
+.mock-tiles span.on {
+  border-color: var(--moss-lit);
+  background: #1F2C21;
+}
+
+.mock-gauges { display: grid; gap: 6px; }
+
+.mock-gauge {
+  height: 16px;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  background: var(--panel-2);
+  overflow: hidden;
+}
+
+.mock-gauge i { display: block; height: 100%; }
+.mock-gauge.cut i { width: 100%; background: #C77B33; }
+.mock-gauge.pre i { width: 3%; background: var(--moss-lit); }
+
+.demo-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.75rem;
+  letter-spacing: -0.015em;
+  color: var(--moss);
+  margin: 0 0 0.75rem;
+}
+
+.demo-body {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+.demo-go {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--moss);
+}
+
+/* ───────── closing ───────── */
+
 .closing {
-  padding: 6rem 0 4rem;
-  text-align: left;
+  padding: clamp(3rem, 8vw, 6rem) 0 4rem;
+  border-top: 1px solid var(--rule);
 }
 
 .closing-title {
@@ -419,33 +616,17 @@ main {
   font-size: 1.15rem;
 }
 
-.closing-links li {
-  margin: 0.5rem 0;
-}
+.closing-links li { margin: 0.5rem 0; }
 
 /* ───────── footer ───────── */
 
-.footnotes {
-  padding: 3rem 0 4rem;
+.site-foot {
+  padding: 2rem 0 4rem;
   border-top: 1px solid var(--rule);
-  font-size: 0.9rem;
-  color: var(--ink-soft);
 }
-
-.footnotes ol {
-  padding-left: 1.25rem;
-  max-width: 50rem;
-}
-
-.footnotes li {
-  margin-bottom: 0.85rem;
-  line-height: 1.5;
-}
-
-.footnotes em { font-style: italic; }
 
 .legal {
-  margin-top: 3rem;
+  margin: 0;
   font-size: 0.8rem;
   color: var(--ink-soft);
   opacity: 0.7;
@@ -453,10 +634,35 @@ main {
 
 /* ───────── responsive ───────── */
 
+@media (max-width: 46rem) {
+  .leftover-grid { grid-template-columns: 1fr; }
+  .swap { height: 220vh; }
+  .swap-svg { max-height: 46vh; }
+}
+
 @media (max-width: 32rem) {
   body { font-size: 17px; }
   .topbar { padding: 1.25rem var(--pad); }
-  .hero { min-height: 70vh; padding: 4rem 0 3rem; }
-  .hero-foot { margin-top: 3rem; }
-  .counter { padding: 1.25rem; }
+  /* hero board has a 1200-unit viewBox, so its labels need the bump.
+     The swap tags sit in a 900-unit box and would collide with the
+     bundles (and overflow the right edge) if scaled up. */
+  .dim-label { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .js .board-grow { transform: none; transition: none; }
+  /* no sticky crossfade — show both states stacked, each caption with
+     its own drawing rather than both captions bunched at the top */
+  .swap { height: auto; }
+  .swap-stage { position: static; height: auto; display: block; }
+  .swap-inner { display: flex; flex-direction: column; }
+  .swap-caps, .swap-figs { display: contents; }
+  .swap-caps { min-height: 0; }
+  .swap-cap { position: static; opacity: 1 !important; margin-bottom: 1rem; }
+  .swap-fig { opacity: 1 !important; margin-bottom: 3rem; }
+  .cap-before { order: 1; }
+  .swap-fig.swap-before { order: 2; }
+  .cap-after { order: 3; }
+  .swap-fig.swap-after { order: 4; }
 }

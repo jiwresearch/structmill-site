@@ -3,25 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Structmill — The cost of cutting on-site</title>
-  <meta name="description" content="$19 billion of lumber is cut, trucked, and thrown away on US jobsites every year. Structmill is rethinking where the cut happens." />
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Structmill — Pre-cut framing, from the lumberyard</title>
+  <meta name="description" content="Framing lumber cut to length before it ships: the offcut never leaves the yard, the saw never comes out, and the crew starts building the day the truck arrives." />
   <meta name="theme-color" content="#F5F0E6" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Structmill" />
-  <meta property="og:title" content="Structmill — The cost of cutting on-site" />
-  <meta property="og:description" content="$19 billion of lumber is cut, trucked, and thrown away on US jobsites every year. Structmill is rethinking where the cut happens." />
+  <meta property="og:title" content="Structmill — Pre-cut framing, from the lumberyard" />
+  <meta property="og:description" content="The offcut never leaves the yard. The saw never comes out. The crew starts building the day the truck arrives." />
   <meta property="og:url" content="https://structmill.com/" />
   <meta property="og:image" content="https://structmill.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Structmill. Cut. Trucked. Thrown away. Every year." />
+  <meta property="og:image:alt" content="Structmill. Every board leaves something behind." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Structmill — The cost of cutting on-site" />
-  <meta name="twitter:description" content="$19 billion of lumber is cut, trucked, and thrown away on US jobsites every year." />
+  <meta name="twitter:title" content="Structmill — Pre-cut framing, from the lumberyard" />
+  <meta name="twitter:description" content="The offcut never leaves the yard. The saw never comes out." />
   <meta name="twitter:image" content="https://structmill.com/og-image.png" />
 
   <!-- Favicon -->
@@ -44,7 +45,7 @@
       </svg>
       <span class="logo-text">Structmill</span>
     </a>
-    <nav class="topnav" style="display:flex;flex-wrap:wrap;justify-content:flex-end;gap:1.5rem">
+    <nav class="topnav">
       <a href="/demo/cut-list/">Build a list</a>
       <a href="/demo/projects/">Pick a project</a>
       <a href="#contact">Contact</a>
@@ -52,162 +53,300 @@
   </header>
 
   <main>
-    <section class="hero">
-      <p class="hero-lede">$19 billion of lumber.</p>
-      <h1 class="hero-title">
-        <span>Cut.</span>
-        <span>Trucked.</span>
-        <span>Thrown away.</span>
-      </h1>
-      <p class="hero-tag">Every year.</p>
-      <p class="hero-foot"><a href="#cost">The cost of cutting on-site &darr;</a></p>
-    </section>
 
-    <section id="cost" class="cost">
-      <h2 class="section-eyebrow">The cost of cutting on-site</h2>
-      <p class="section-deck">
-        Almost every board that frames a US house is measured and cut by hand
-        on a jobsite. That practice carries three bills nobody talks about together.
+    <!-- ───────── hero: one board, macro ───────── -->
+    <section class="hero">
+      <p class="eyebrow">Pre-cut framing, from the lumberyard</p>
+
+      <figure class="board-fig" data-reveal>
+        <svg class="board-svg" viewBox="0 0 1200 300" role="img"
+             aria-label="A sixteen-foot board. The left portion becomes a wall; the right portion is cut off and thrown away.">
+          <defs>
+            <pattern id="waste-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <rect width="8" height="8" fill="var(--paper-deep)"/>
+              <line x1="0" y1="0" x2="0" y2="8" stroke="var(--moss)" stroke-width="1.5" opacity="0.38"/>
+            </pattern>
+          </defs>
+
+          <!-- top dimension: full stock -->
+          <g class="dim">
+            <line x1="60" y1="62" x2="1140" y2="62"/>
+            <line x1="60" y1="52" x2="60" y2="72"/>
+            <line x1="1140" y1="52" x2="1140" y2="72"/>
+          </g>
+          <text class="dim-label" x="600" y="44" text-anchor="middle">16&#8242;-0 STOCK, OFF THE TRUCK</text>
+
+          <!-- the board -->
+          <g class="board-body">
+            <rect class="board-waste" x="820" y="110" width="320" height="80" fill="url(#waste-hatch)"/>
+            <g class="board-grow">
+              <rect class="board-used" x="60" y="110" width="760" height="80"/>
+            </g>
+            <rect class="board-outline" x="60" y="110" width="1080" height="80"/>
+            <line class="board-cut" x1="820" y1="96" x2="820" y2="204"/>
+          </g>
+
+          <!-- bottom dimensions -->
+          <g class="dim">
+            <line x1="60" y1="238" x2="820" y2="238"/>
+            <line x1="60" y1="228" x2="60" y2="248"/>
+            <line x1="820" y1="228" x2="820" y2="248"/>
+            <line x1="820" y1="238" x2="1140" y2="238"/>
+            <line x1="1140" y1="228" x2="1140" y2="248"/>
+          </g>
+          <text class="dim-label" x="440" y="270" text-anchor="middle">BECOMES A WALL</text>
+          <text class="dim-label waste-label" x="980" y="270" text-anchor="middle">THROWN AWAY</text>
+        </svg>
+      </figure>
+
+      <h1 class="hero-title">Every board leaves something behind.</h1>
+      <p class="hero-tag">
+        Structmill solves the cut list at the yard, so the offcut never gets on the truck.
       </p>
 
-      <article class="sub" id="waste">
-        <div class="sub-num">01</div>
-        <h3 class="sub-title">Waste</h3>
+      <p class="scroll-cue"><a href="#swap">See what changes &darr;</a></p>
+    </section>
 
-        <div class="stat-card" data-reveal>
-          <div class="stat-value">
-            <span class="stat-prefix">$</span><span data-count-to="19" data-count-duration="1600">0</span><span class="stat-suffix">B</span>
+    <!-- ───────── the swap: pile → sorted stacks ───────── -->
+    <section class="swap" id="swap" aria-labelledby="swap-h">
+      <h2 class="sr-only" id="swap-h">The same order, delivered two ways</h2>
+
+      <div class="swap-stage">
+        <div class="swap-inner">
+
+          <div class="swap-caps">
+            <p class="swap-cap cap-before">
+              <span class="swap-state">Cut on site</span>
+              <span class="swap-note">A stack of stock lengths and a saw. Every piece is measured, marked and cut in the weather.</span>
+            </p>
+            <p class="swap-cap cap-after">
+              <span class="swap-state">Delivered pre-cut</span>
+              <span class="swap-note">The same order, solved as one problem: sorted, labeled, bundled in the order it goes up.</span>
+            </p>
           </div>
-          <div class="stat-caption">of US lumber, cut and thrown away every year.</div>
+
+          <div class="swap-figs">
+          <figure class="swap-fig swap-before">
+            <svg class="swap-svg" viewBox="0 200 900 195" role="img" aria-label="A disorganized heap of boards at odd angles on the ground.">
+              <line class="ground" x1="30" y1="378" x2="870" y2="378"/>
+              <g class="heap">
+                <rect x="120" y="352" width="260" height="14" transform="rotate(-3 250 359)"/>
+                <rect x="560" y="344" width="240" height="14" transform="rotate(-4 680 351)"/>
+                <rect x="100" y="336" width="160" height="14" transform="rotate(13 180 343)"/>
+                <rect x="300" y="344" width="200" height="14" transform="rotate(5 400 351)"/>
+                <rect x="420" y="350" width="180" height="14" transform="rotate(11 510 357)"/>
+                <rect x="180" y="332" width="300" height="14" transform="rotate(-8 330 339)"/>
+                <rect x="470" y="330" width="220" height="14" transform="rotate(-14 580 337)"/>
+                <rect x="600" y="318" width="150" height="14" transform="rotate(28 675 325)"/>
+                <rect x="150" y="310" width="120" height="14" transform="rotate(22 210 317)"/>
+                <rect x="250" y="318" width="150" height="14" transform="rotate(14 325 325)"/>
+                <rect x="330" y="306" width="280" height="14" transform="rotate(-6 470 313)"/>
+                <rect x="520" y="300" width="170" height="14" transform="rotate(17 605 307)"/>
+                <rect x="210" y="294" width="190" height="14" transform="rotate(3 305 301)"/>
+                <rect x="380" y="282" width="240" height="14" transform="rotate(9 500 289)"/>
+                <rect x="280" y="270" width="160" height="14" transform="rotate(-18 360 277)"/>
+                <rect x="440" y="262" width="130" height="14" transform="rotate(25 505 269)"/>
+                <rect x="330" y="248" width="200" height="14" transform="rotate(-11 430 255)"/>
+                <rect x="240" y="236" width="140" height="14" transform="rotate(7 310 243)"/>
+              </g>
+            </svg>
+          </figure>
+
+          <figure class="swap-fig swap-after">
+            <svg class="swap-svg" viewBox="0 200 900 195" role="img" aria-label="Four neat bundles of lumber, each strapped and labeled with a piece name, length and quantity.">
+              <line class="ground" x1="30" y1="378" x2="870" y2="378"/>
+
+              <g class="bundle">
+                <text class="tag" x="60" y="258">STUD</text>
+                <text class="tag tag-dim" x="60" y="274">92-5/8  &#215;22</text>
+                <rect x="60" y="357" width="200" height="13"/>
+                <rect x="60" y="340" width="200" height="13"/>
+                <rect x="60" y="323" width="200" height="13"/>
+                <rect x="60" y="306" width="200" height="13"/>
+                <rect x="60" y="289" width="200" height="13"/>
+                <line class="strap" x1="110" y1="285" x2="110" y2="374"/>
+                <line class="strap" x1="210" y1="285" x2="210" y2="374"/>
+              </g>
+
+              <g class="bundle">
+                <text class="tag" x="310" y="258">JOIST</text>
+                <text class="tag tag-dim" x="310" y="274">12&#8242;-0  &#215;14</text>
+                <rect x="310" y="357" width="260" height="13"/>
+                <rect x="310" y="340" width="260" height="13"/>
+                <rect x="310" y="323" width="260" height="13"/>
+                <rect x="310" y="306" width="260" height="13"/>
+                <rect x="310" y="289" width="260" height="13"/>
+                <line class="strap" x1="370" y1="285" x2="370" y2="374"/>
+                <line class="strap" x1="510" y1="285" x2="510" y2="374"/>
+              </g>
+
+              <g class="bundle">
+                <text class="tag" x="620" y="258">HEADER</text>
+                <text class="tag tag-dim" x="620" y="274">5&#8242;-0  &#215;6</text>
+                <rect x="620" y="357" width="110" height="13"/>
+                <rect x="620" y="340" width="110" height="13"/>
+                <rect x="620" y="323" width="110" height="13"/>
+                <rect x="620" y="306" width="110" height="13"/>
+                <line class="strap" x1="675" y1="302" x2="675" y2="374"/>
+              </g>
+
+              <g class="bundle">
+                <text class="tag" x="780" y="258">BLOCK</text>
+                <text class="tag tag-dim" x="780" y="274">22-1/2  &#215;26</text>
+                <rect x="780" y="357" width="60" height="13"/>
+                <rect x="780" y="340" width="60" height="13"/>
+                <rect x="780" y="323" width="60" height="13"/>
+                <rect x="780" y="306" width="60" height="13"/>
+                <line class="strap" x1="810" y1="302" x2="810" y2="374"/>
+              </g>
+            </svg>
+          </figure>
+          </div>
+
         </div>
+      </div>
+    </section>
 
-        <p class="sub-lead">
-          Eight to twelve percent of every lumber order ends up in a dumpster.
-        </p>
-        <p>
-          The US residential lumber supply chain processes more than
-          $160&nbsp;billion in materials each year.<sup><a href="#fn1">1</a></sup>
-          Roughly one out of every eight boards is cut short, offcut and forgotten,
-          or trimmed past the point of reuse — about
-          <strong>$19&nbsp;billion of lumber, every year</strong>.
-        </p>
-        <p>
-          That wood is logged, milled, dried, graded, trucked across the country,
-          and stocked on a yard — only to be cut once, thrown in a bin, and hauled to a landfill.
-        </p>
+    <!-- ───────── what's left over ───────── -->
+    <section class="leftover" aria-labelledby="leftover-h">
+      <h2 class="section-title" id="leftover-h">What&#8217;s left over.</h2>
 
-        <figure class="pile" aria-hidden="true">
-          <svg class="pile-svg" viewBox="0 0 600 220" preserveAspectRatio="xMidYEnd meet">
-            <!-- ground line -->
-            <line class="pile-ground" x1="0" y1="210" x2="600" y2="210" />
-            <!-- boards: stacked offcuts, slight randomization -->
-            <g class="pile-boards">
-              <rect class="board" x="40"  y="200" width="280" height="8" />
-              <rect class="board" x="100" y="190" width="220" height="8" />
-              <rect class="board" x="60"  y="180" width="340" height="8" />
-              <rect class="board" x="160" y="170" width="180" height="8" />
-              <rect class="board" x="80"  y="160" width="260" height="8" />
-              <rect class="board" x="140" y="150" width="320" height="8" />
-              <rect class="board" x="90"  y="140" width="200" height="8" />
-              <rect class="board" x="180" y="130" width="280" height="8" />
-              <rect class="board" x="50"  y="120" width="240" height="8" />
-              <rect class="board" x="120" y="110" width="360" height="8" />
-              <rect class="board" x="200" y="100" width="220" height="8" />
-              <rect class="board" x="70"  y="90"  width="300" height="8" />
-              <rect class="board" x="150" y="80"  width="240" height="8" />
-              <rect class="board" x="100" y="70"  width="320" height="8" />
-              <rect class="board" x="180" y="60"  width="200" height="8" />
-              <rect class="board" x="60"  y="50"  width="280" height="8" />
-              <rect class="board" x="220" y="40"  width="180" height="8" />
-              <rect class="board" x="110" y="30"  width="260" height="8" />
+      <div class="leftover-grid">
+        <figure class="leftover-fig" data-reveal>
+          <svg class="leftover-svg" viewBox="0 118 420 127" role="img" aria-label="A large heap of offcut pieces on the ground.">
+            <line class="ground" x1="20" y1="228" x2="400" y2="228"/>
+            <g class="scrap">
+              <rect x="70"  y="212" width="90" height="11" transform="rotate(-4 115 217)"/>
+              <rect x="180" y="214" width="70" height="11" transform="rotate(6 215 219)"/>
+              <rect x="260" y="210" width="80" height="11" transform="rotate(-9 300 215)"/>
+              <rect x="110" y="198" width="60" height="11" transform="rotate(14 140 203)"/>
+              <rect x="200" y="200" width="90" height="11" transform="rotate(-6 245 205)"/>
+              <rect x="290" y="196" width="55" height="11" transform="rotate(19 317 201)"/>
+              <rect x="140" y="184" width="80" height="11" transform="rotate(-13 180 189)"/>
+              <rect x="230" y="186" width="65" height="11" transform="rotate(8 262 191)"/>
+              <rect x="170" y="170" width="95" height="11" transform="rotate(4 217 175)"/>
+              <rect x="265" y="172" width="50" height="11" transform="rotate(-21 290 177)"/>
+              <rect x="120" y="158" width="70" height="11" transform="rotate(11 155 163)"/>
+              <rect x="205" y="156" width="85" height="11" transform="rotate(-7 247 161)"/>
+              <rect x="240" y="142" width="60" height="11" transform="rotate(16 270 147)"/>
+              <rect x="160" y="144" width="75" height="11" transform="rotate(-3 197 149)"/>
+              <rect x="195" y="130" width="55" height="11" transform="rotate(23 222 135)"/>
             </g>
           </svg>
-          <figcaption class="pile-caption">One pile. One jobsite. One day.</figcaption>
+          <figcaption class="leftover-cap"><span class="leftover-state">Cut on site</span></figcaption>
         </figure>
-      </article>
 
-      <article class="sub" id="time">
-        <div class="sub-num">02</div>
-        <h3 class="sub-title">Time</h3>
-        <p class="sub-lead">
-          Pre-cut framing saves two to six days on every house.
-        </p>
-        <p>
-          A HUD field study of builders who switched to pre-cut and panelized wall
-          systems found framing cycle times dropped by 2–6 days per home, with crew
-          sizes reduced by about two workers — savings drawn directly from eliminating
-          on-site measuring, cutting, and fastening.<sup><a href="#fn2">2</a></sup>
-        </p>
-        <p>
-          That is not surprising once you look at the underlying production rates.
-          Standard wall framing runs about 0.036–0.046 man-hours per linear foot,
-          or roughly 2–3 minutes per linear foot for layout, measuring, cutting,
-          and assembly combined.<sup><a href="#fn3">3</a></sup> A framer averages
-          ten to thirteen studs installed per labor-hour — about four to six minutes
-          per stud.<sup><a href="#fn4">4</a></sup> The measuring and cutting step
-          is a real slice of that, repeated thousands of times per house.
-        </p>
-
-        <div class="counter">
-          <div class="counter-label">Hours of jobsite measuring and cutting in the US since you opened this page</div>
-          <div class="counter-value" id="counter">0</div>
-          <div class="counter-note">
-            Estimated, based on US housing starts and the production rates cited above.
-          </div>
-        </div>
-      </article>
-
-      <article class="sub" id="safety">
-        <div class="sub-num">03</div>
-        <h3 class="sub-title">Safety &amp; precision</h3>
-
-        <div class="stat-card stat-card-dual" data-reveal>
-          <div class="stat-pair">
-            <div class="stat-value">
-              <span data-count-to="30000" data-count-duration="1800">0</span>
-            </div>
-            <div class="stat-caption">US emergency-room saw injuries per year.</div>
-          </div>
-          <div class="stat-pair">
-            <div class="stat-value">
-              <span data-count-to="4300" data-count-duration="1800">0</span>
-            </div>
-            <div class="stat-caption">of those are amputations.</div>
-          </div>
-        </div>
-
-        <p class="sub-lead">
-          Most happen to people who are good at their jobs. The danger isn't the saw.
-          It is making the same cut for the thousandth time.
-        </p>
-        <p>
-          That is the CPSC's own estimate, drawn from years of NEISS hospital
-          data and re-cited in the 2023 federal rulemaking on table-saw blade
-          contact.<sup><a href="#fn5">5</a></sup> The agency does not split jobsite
-          from home use cleanly, but residential framing is a meaningful share —
-          carpenters log thousands of nonfatal injuries with days away from work
-          every year.<sup><a href="#fn6">6</a></sup>
-        </p>
-        <p>
-          Precision is the quieter version of the same problem. A cut made on a
-          calibrated indoor machine does not depend on the weather, the wind,
-          a sawhorse that is not quite level, or how tired the framer is at
-          three in the afternoon. A cut made on a jobsite does.
-        </p>
-      </article>
+        <figure class="leftover-fig" data-reveal>
+          <svg class="leftover-svg" viewBox="0 118 420 127" role="img" aria-label="Two small offcut pieces on the ground.">
+            <line class="ground" x1="20" y1="228" x2="400" y2="228"/>
+            <g class="scrap">
+              <rect x="180" y="212" width="46" height="11" transform="rotate(-3 203 217)"/>
+              <rect x="215" y="199" width="30" height="11" transform="rotate(7 230 204)"/>
+            </g>
+          </svg>
+          <figcaption class="leftover-cap"><span class="leftover-state">Pre-cut at the yard</span></figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="why" class="why">
-      <h2 class="section-eyebrow">Why this persists</h2>
-      <p>
-        Manual measure-and-cut is the default because no part of the building
-        material supply chain is engineered to do it any other way. Offcuts are
-        abandoned because nothing tracks them. Saws live on jobsites because
-        nobody has built the alternative — at the lumberyard, in the hands of
-        the people already moving the wood.
+    <!-- ───────── three ideas ───────── -->
+    <section class="ideas" aria-labelledby="ideas-h">
+      <h2 class="section-title" id="ideas-h">Less waste. No saw. Days back.</h2>
+
+      <ul class="idea-grid">
+        <li class="idea" data-reveal>
+          <svg class="idea-icon" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="4" y="18" width="40" height="14"/>
+            <rect x="44" y="18" width="16" height="14" stroke-dasharray="3 3"/>
+            <line x1="44" y1="12" x2="44" y2="38"/>
+          </svg>
+          <h3 class="idea-title">Optimized waste</h3>
+          <p class="idea-body">
+            The whole list is solved at once, so one stock length carries several
+            pieces instead of one piece and a remnant. What is left over stays at
+            the yard, where it is still worth something.
+          </p>
+        </li>
+
+        <li class="idea" data-reveal>
+          <svg class="idea-icon" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="26" cy="24" r="14"/>
+            <line x1="26" y1="10" x2="26" y2="14"/>
+            <line x1="26" y1="34" x2="26" y2="38"/>
+            <line x1="12" y1="24" x2="16" y2="24"/>
+            <line x1="36" y1="24" x2="40" y2="24"/>
+            <line x1="14" y1="38" x2="54" y2="8" stroke-width="2.5"/>
+          </svg>
+          <h3 class="idea-title">No saw on site</h3>
+          <p class="idea-body">
+            Pieces arrive at final length, labeled and in the order they go up.
+            Nobody measures, nobody marks, and nobody makes the same cut for the
+            thousandth time at three in the afternoon.
+          </p>
+        </li>
+
+        <li class="idea" data-reveal>
+          <svg class="idea-icon" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="32" cy="24" r="16"/>
+            <polyline points="32,14 32,24 41,29"/>
+          </svg>
+          <h3 class="idea-title">Time back</h3>
+          <p class="idea-body">
+            Measuring and cutting is a real slice of every framing day, repeated
+            thousands of times per house. Delivered pre-cut, the crew starts
+            building the morning the truck shows up.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ───────── demos ───────── -->
+    <section class="demos" id="demos" aria-labelledby="demos-h">
+      <h2 class="section-title" id="demos-h">Run it yourself.</h2>
+      <p class="section-deck">
+        Both of these solve real cut lists in your browser — the same packing
+        problem the yard engine solves, at a smaller scale.
       </p>
+
+      <div class="demo-grid">
+        <a class="demo-card" href="/demo/cut-list/">
+          <div class="demo-mock" aria-hidden="true">
+            <div class="mock-strip"><span>STATE <b>JOBSITE</b></span><span>QUEUE <b>7</b></span><span>BOARDS <b>6</b></span></div>
+            <div class="mock-keys"><span>STUD</span><span>JOIST</span><span>HEADER</span></div>
+            <div class="mock-bars">
+              <div class="mock-bar"><i style="width:78%"></i></div>
+              <div class="mock-bar"><i style="width:54%"></i></div>
+              <div class="mock-bar"><i style="width:92%"></i></div>
+            </div>
+          </div>
+          <h3 class="demo-title">Build a list</h3>
+          <p class="demo-body">
+            Add pieces one at a time and watch the packing plan re-solve. Then
+            send the order to the yard and watch the saw time go to zero.
+          </p>
+          <span class="demo-go">Open the demo &rarr;</span>
+        </a>
+
+        <a class="demo-card" href="/demo/projects/">
+          <div class="demo-mock" aria-hidden="true">
+            <div class="mock-strip"><span>PROJECT <b>DECK</b></span><span>PIECES <b>53</b></span><span>BOARDS <b>30</b></span></div>
+            <div class="mock-tiles"><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div>
+            <div class="mock-gauges">
+              <div class="mock-gauge cut"><i></i></div>
+              <div class="mock-gauge pre"><i></i></div>
+            </div>
+          </div>
+          <h3 class="demo-title">Pick a project</h3>
+          <p class="demo-body">
+            A privacy fence and an 1,800 square foot house are the same problem at
+            different scales. Pick one and see how the lumber order changes.
+          </p>
+          <span class="demo-go">Open the demo &rarr;</span>
+        </a>
+      </div>
     </section>
 
+    <!-- ───────── closing ───────── -->
     <section id="contact" class="closing">
       <h2 class="closing-title">Structmill exists to end this.</h2>
       <p class="closing-body">
@@ -219,45 +358,7 @@
       </ul>
     </section>
 
-    <footer class="footnotes">
-      <h2 class="section-eyebrow">Sources</h2>
-      <ol>
-        <li id="fn1">
-          Market sizing: Structmill internal analysis of the US residential
-          lumber supply chain, anchored to NAHB
-          <em>Cost of Constructing a Home, 2024</em>
-          (<a href="https://www.nahb.org/news-and-economics/housing-economics-plus/special-studies/special-studies-pages/cost-of-constructing-a-home-in-2024" rel="noopener">nahb.org</a>)
-          and LMC (Lumbermen's Merchandising Corp.) independent-yard segment
-          benchmarks. The 8–12% waste range is drawn from panelized and pre-cut
-          framing industry studies.
-        </li>
-        <li id="fn2">
-          Ghosh, Bigelow &amp; Patel, "Use of Panelized Components in Homebuilding,"
-          <em>Cityscape: A Journal of Policy Development and Research</em>,
-          U.S. Department of Housing and Urban Development, Vol. 23 No. 3, 2021.
-          <a href="https://www.huduser.gov/portal/periodicals/cityscpe/vol23num3/ch15.pdf" rel="noopener">huduser.gov</a>
-        </li>
-        <li id="fn3">
-          Wall framing production rate, ~0.036–0.046 man-hours per linear foot.
-          Industry estimating reference: Methvin Production Rates (wall framing table).
-        </li>
-        <li id="fn4">
-          Residential framing productivity, ~10–13 studs installed per labor-hour.
-          Industry estimating references: Donizo construction productivity rates,
-          Construct Estimates framing estimating guide, and Estimation Pro
-          construction production rates.
-        </li>
-        <li id="fn5">
-          U.S. Consumer Product Safety Commission, <em>Safety Standard Addressing
-          Blade-Contact Injuries on Table Saws</em>, Federal Register, November 1, 2023.
-          <a href="https://www.federalregister.gov/documents/2023/11/01/2023-23898/safety-standard-addressing-blade-contact-injuries-on-table-saws" rel="noopener">federalregister.gov</a>
-        </li>
-        <li id="fn6">
-          Center for Construction Research and Training (CPWR), <em>The Construction
-          Chart Book</em>, BLS SOII-derived carpenter injury counts.
-          <a href="https://www.cpwr.com/research/data-center/the-construction-chart-book/" rel="noopener">cpwr.com</a>
-        </li>
-      </ol>
+    <footer class="site-foot">
       <p class="legal">© Structmill LLC. Built in Pittsburgh and Morgantown.</p>
     </footer>
   </main>
