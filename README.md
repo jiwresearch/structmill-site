@@ -1,6 +1,6 @@
 # structmill-site
 
-Marketing site for Struct-Mill at [structmill.com](https://structmill.com).
+Marketing site for Structmill at [structmill.com](https://structmill.com).
 
 Static HTML/CSS, no build step, deployed via GitHub Pages.
 

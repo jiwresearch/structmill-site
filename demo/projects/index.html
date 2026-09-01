@@ -48,7 +48,15 @@
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
     font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
   a{color:var(--moss)}
-  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  /* full-bleed: the panel uses the whole viewport, prose keeps its measure */
+  .wrap{width:100%;max-width:none;margin:0;padding:0 clamp(20px,3vw,48px)}
+  /* first screen = topbar + heading + panel, filling the window height;
+     the explanatory notes sit below the fold */
+  .screen{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+  .panelwrap{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;padding-bottom:22px}
+  .panelwrap > #root{flex:1 1 auto;display:flex;flex-direction:column}
+  .panelwrap .panel{flex:1 1 auto;display:flex;flex-direction:column;margin-bottom:0}
+  .panelwrap .panel > .body{flex:1 1 auto}
 
   .topbar{border-bottom:1px solid var(--rule)}
   .topbar .wrap{display:flex;align-items:center;justify-content:space-between;
@@ -62,8 +70,8 @@
   .nav a:hover{color:var(--moss);border-bottom-color:var(--moss)}
   .nav a[aria-current="page"]{border-bottom-color:var(--moss-deep);color:var(--moss-deep);font-weight:600}
 
-  .pagehead{padding:34px 0 4px}
-  .pagehead h1{font-family:var(--display);font-size:34px;font-weight:700;
+  .pagehead{padding-top:34px;padding-bottom:4px}
+  .pagehead h1{font-family:var(--display);font-size:clamp(34px,3.2vw,52px);font-weight:700;
     letter-spacing:-.015em;line-height:1.05;margin:0 0 8px;color:var(--moss)}
   .pagehead p{margin:0;max-width:60ch;color:var(--ink-soft)}
 
@@ -78,7 +86,7 @@
   .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
 
   .sel{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
-  .tile{flex:0 0 auto;min-width:108px;background:var(--panel-3);border:1px solid var(--hair);
+  .tile{flex:1 1 0;min-width:108px;background:var(--panel-3);border:1px solid var(--hair);
     border-radius:3px;padding:12px 10px;cursor:pointer;text-align:center;color:var(--fg);font-family:var(--mono)}
   .tile:hover{border-color:var(--moss-lit)}
   .tile:focus-visible{outline:2px solid var(--moss-lit);outline-offset:2px}
@@ -103,7 +111,8 @@
   .param{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--dim)}
   .param input[type=range]{width:100%;margin-top:8px;accent-color:var(--moss-lit)}
 
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  /* capped so the stock label and its count stay scannable on a wide screen */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:1100px}
   .col{border:1px solid var(--hair);border-radius:3px;padding:12px;background:var(--panel-2)}
   .col h4{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.4px}
   .col .sub{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin:2px 0 10px}
@@ -129,6 +138,7 @@
 </head>
 <body>
 
+<div class="screen">
 <header class="topbar">
   <div class="wrap">
     <a class="mark" href="/">
@@ -157,7 +167,8 @@
   Pick one and see how much of that closing work disappears.</p>
 </div>
 
-<div class="wrap"><div id="root"></div></div>
+<div class="wrap panelwrap"><div id="root"></div></div>
+</div><!-- /.screen -->
 
 <div class="wrap">
   <div class="note">
