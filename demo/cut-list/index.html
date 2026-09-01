@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Build a list — Structmill</title>
+<meta name="description" content="Build a framing cut list piece by piece and watch what it costs at the saw. Then send the order to the yard." />
+<link rel="canonical" href="https://structmill.com/demo/cut-list/" />
+<meta name="theme-color" content="#F5F0E6" />
+<meta property="og:title" content="Build a list — Structmill" />
+<meta property="og:description" content="Build a framing cut list piece by piece and watch what it costs at the saw." />
+<meta property="og:url" content="https://structmill.com/demo/cut-list/" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/demo/assets/fonts.css">
+<script src="/demo/assets/vendor/react.production.min.js"></script>
+<script src="/demo/assets/vendor/react-dom.production.min.js"></script>
+<style>
+  :root{
+    /* ---- site tokens, light side (match style.css) ---- */
+    --paper:#F5F0E6; --paper-deep:#ECE5D4;
+    --ink:#1A1A1A; --ink-soft:#3A3A36;
+    --moss:#355E3B; --moss-deep:#234229; --moss-faint:#D9E2D7;
+    --rule:rgba(53,94,59,.25);
+
+    /* ---- dark instrument ramp, same 129° hue as --moss ---- */
+    --panel:#0D120E; --panel-2:#141C15; --panel-3:#1C271D;
+    --hair:#2A3A2C; --fg:#DCE5DC; --dim:#8AA08D;
+
+    /* ---- moss lifted for dark panels ----
+       --moss #355E3B is only 1.6:1 on --panel, unreadable as an accent.
+       Same hue (129°), same family, raised in lightness:
+       --moss-mid  L45%  5.3:1  fills, board segments, hover
+       --moss-lit  L62%  8.7:1  readout values, active borders, live state
+       --moss-hi   L75% 13.0:1  hover / emphasis                      */
+    --moss-mid:#50955B; --moss-lit:#7FBD88; --moss-hi:#A9D6B0;
+
+    --amber:#C77B33; --red:#C4472C;
+
+    --display:"Zilla Slab","Roboto Slab",Georgia,serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--moss)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+
+  .topbar{border-bottom:1px solid var(--rule)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;
+    gap:16px;padding-top:15px;padding-bottom:15px;flex-wrap:wrap}
+  .mark{display:inline-flex;align-items:center;gap:.5em;font-family:var(--display);
+    font-weight:700;font-size:23px;line-height:1;color:var(--moss);
+    text-decoration:none;letter-spacing:-.02em}
+  .mark .logo-mark{width:1.15em;height:1.02em;flex-shrink:0}
+  .nav{display:flex;gap:20px;font-size:14px;font-family:var(--mono)}
+  .nav a{color:var(--ink-soft);text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent}
+  .nav a:hover{color:var(--moss);border-bottom-color:var(--moss)}
+  .nav a[aria-current="page"]{border-bottom-color:var(--moss-deep);color:var(--moss-deep);font-weight:600}
+
+  .pagehead{padding:34px 0 4px}
+  .pagehead h1{font-family:var(--display);font-size:34px;font-weight:700;
+    letter-spacing:-.015em;line-height:1.05;margin:0 0 8px;color:var(--moss)}
+  .pagehead p{margin:0;max-width:60ch;color:var(--ink-soft)}
+
+  /* ---------- instrument panel ---------- */
+  .panel{background:var(--panel);border:1px solid var(--hair);border-radius:4px;
+    margin:22px 0;color:var(--fg);overflow:hidden}
+  .strip{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--hair);background:var(--panel-2)}
+  .strip div{padding:9px 14px;border-right:1px solid var(--hair);font-family:var(--mono);
+    font-size:11.5px;letter-spacing:.4px;color:var(--dim);white-space:nowrap}
+  .strip div b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
+  .body{padding:18px}
+  .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.5px;color:var(--dim);margin-bottom:9px}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+  .keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  @media (max-width:560px){.keypad{grid-template-columns:repeat(2,1fr)}}
+  .key{background:var(--panel-3);border:1px solid var(--hair);color:var(--fg);
+    border-radius:3px;padding:11px 12px;cursor:pointer;text-align:left;font-family:var(--mono);
+    font-size:13px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+  .key:hover{border-color:var(--moss-lit);color:var(--moss-hi)}
+  .key:focus-visible{outline:2px solid var(--moss-lit);outline-offset:2px}
+  .key i{font-style:normal;color:var(--dim);font-size:12px}
+  .readout{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--hair);
+    border-radius:3px;background:var(--panel-2);margin-top:18px}
+  .readout > div{padding:15px 12px;text-align:center;border-right:1px solid var(--hair)}
+  .readout > div:last-child{border-right:none}
+  .readout .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;
+    font-size:27px;line-height:1.1;letter-spacing:-.5px}
+  .readout .k{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:6px;letter-spacing:.4px}
+  .cmd{width:100%;margin-top:14px;padding:14px;border-radius:3px;border:1px solid var(--moss-lit);
+    background:var(--moss);color:#fff;font-family:var(--mono);font-size:14px;font-weight:600;
+    letter-spacing:.6px;cursor:pointer}
+  .cmd:hover{background:var(--moss-mid);color:var(--panel)}
+  .cmd:disabled{background:var(--panel-3);border-color:var(--hair);color:var(--dim);cursor:default}
+  .cmd.back{background:transparent;border-color:var(--amber);color:var(--amber)}
+  .cmd.back:hover{background:var(--amber);color:var(--panel)}
+  .param{margin-top:16px;border-top:1px solid var(--hair);padding-top:14px;
+    font-family:var(--mono);font-size:12px;color:var(--dim)}
+  .param input[type=range]{width:100%;margin-top:8px;accent-color:var(--moss-lit)}
+  .ghost{background:none;border:1px solid var(--hair);color:var(--dim);border-radius:3px;
+    padding:5px 12px;cursor:pointer;font-family:var(--mono);font-size:11.5px}
+  .ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+  .note{border-top:1px solid var(--rule);margin-top:34px;padding:24px 0 8px;max-width:66ch}
+  .note h2{font-family:var(--display);font-size:19px;font-weight:700;margin:0 0 8px;color:var(--moss)}
+  .note p{margin:0 0 14px;font-size:15px;color:var(--ink-soft)}
+  footer{border-top:1px solid var(--rule);margin-top:22px;padding:20px 0 40px;
+    font-family:var(--mono);font-size:12.5px;color:var(--moss)}
+  @keyframes seat{from{opacity:.35}to{opacity:1}}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="/">
+      <svg class="logo-mark" viewBox="0 0 36 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true">
+        <line x1="5"  y1="26" x2="29" y2="26"/>
+        <line x1="9"  y1="22" x2="27" y2="22"/>
+        <line x1="3"  y1="18" x2="31" y2="18"/>
+        <line x1="11" y1="14" x2="25" y2="14"/>
+        <line x1="7"  y1="10" x2="29" y2="10"/>
+      </svg>
+      <span>Structmill</span>
+    </a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/demo/cut-list/" aria-current="page">Build a list</a>
+      <a href="/demo/projects/">Pick a project</a>
+      <a href="mailto:joseph@structmill.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap pagehead">
+  <h1>Build a list</h1>
+  <p>Add pieces the way a job does, one at a time. The panel shows what the list costs
+  at the saw as it grows. When it's done, send it to the yard.</p>
+</div>
+
+<div class="wrap"><div id="root"></div></div>
+
+<div class="wrap">
+  <div class="note">
+    <h2>What is running here</h2>
+    <p>A best-fit-decreasing packer, in your browser. It re-solves the whole list on every
+    piece you add, so the plan doesn't depend on the order you entered things. The engine
+    at a yard uses Gilmore–Gomory column generation across every order in the queue at
+    once, which is where the real yield comes from — this is the idea, not the product.</p>
+    <h2>What the time figure claims</h2>
+    <p>Cuts multiplied by minutes per cut, and nothing else. The rate is a parameter you
+    set, not a number we're asserting. Hauling, staging and fastening aren't counted,
+    because they happen either way. The saw is what leaves.</p>
+    <h2>If you run a yard</h2>
+    <p>This is the builder's half of the picture. Yours is order pooling — cut lists from
+    concurrent jobs solved as one problem, which is where the yield and the margin are.
+    <a href="mailto:joseph@structmill.com">joseph@structmill.com</a> · (412) 667-1980</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Structmill · Morgantown, WV · joseph@structmill.com · (412) 667-1980<br>
+    Smarter Lumber. Right on Time. · Patent pending.
+  </div>
+</footer>
+
+<script>
+const {
+  useState
+} = React;
+const STOCK = [96, 120, 144, 168, 192];
+const STOCK_LABEL = {
+  96: '8\'',
+  120: '10\'',
+  144: '12\'',
+  168: '14\'',
+  192: '16\''
+};
+const KERF = 0.125;
+const KEYS = [{
+  label: "STUD",
+  len: 92.625,
+  disp: "92-5/8"
+}, {
+  label: "JOIST",
+  len: 144,
+  disp: "12'-0"
+}, {
+  label: "HEADER",
+  len: 60,
+  disp: "5'-0"
+}, {
+  label: "BLOCKING",
+  len: 22.5,
+  disp: "22-1/2"
+}, {
+  label: "RAFTER",
+  len: 120,
+  disp: "10'-0"
+}, {
+  label: "PLATE",
+  len: 96,
+  disp: "8'-0"
+}];
+const ft = n => {
+  const f = Math.floor(n / 12);
+  const i = +(n - f * 12).toFixed(1);
+  return i === 0 ? f + "'-0" : f + "'-" + i;
+};
+const hm = m => {
+  const h = Math.floor(m / 60);
+  const r = Math.round(m % 60);
+  return h > 0 ? h + ":" + String(r).padStart(2, "0") : r + " min";
+};
+function pack(cuts) {
+  const sorted = [...cuts].sort((a, b) => b.len - a.len);
+  const boards = [];
+  for (const c of sorted) {
+    let best = -1,
+      bestRem = Infinity;
+    for (let i = 0; i < boards.length; i++) {
+      const need = c.len + (boards[i].cuts.length ? KERF : 0);
+      const rem = boards[i].rem - need;
+      if (rem >= 0 && rem < bestRem) {
+        bestRem = rem;
+        best = i;
+      }
+    }
+    if (best >= 0) {
+      const b = boards[best];
+      b.cuts.push(c);
+      b.rem -= c.len + (b.cuts.length > 1 ? KERF : 0);
+    } else {
+      const s = STOCK.find(x => x >= c.len) || STOCK[STOCK.length - 1];
+      boards.push({
+        stock: s,
+        rem: s - c.len,
+        cuts: [c]
+      });
+    }
+  }
+  return boards;
+}
+function Board({
+  b,
+  idx
+}) {
+  const used = b.cuts.reduce((s, c) => s + c.len, 0);
+  return React.createElement("div", {
+    style: {
+      marginBottom: 9,
+      animation: "seat .12s linear"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontFamily: "var(--mono)",
+      fontSize: 11,
+      color: "var(--dim)",
+      marginBottom: 4
+    }
+  }, React.createElement("span", null, "B", String(idx + 1).padStart(2, "0"), " · ", STOCK_LABEL[b.stock], " · ", b.cuts.length, " pc"), React.createElement("span", null, "rem ", ft(b.stock - used))), React.createElement("div", {
+    style: {
+      display: "flex",
+      height: 26,
+      border: "1px solid var(--hair)",
+      borderRadius: 2,
+      overflow: "hidden"
+    }
+  }, b.cuts.map((c, i) => React.createElement("div", {
+    key: i,
+    title: c.label + " " + ft(c.len),
+    style: {
+      width: c.len / b.stock * 100 + "%",
+      background: i % 2 ? "#305535" : "#3B6842",
+      borderRight: "1px solid var(--panel)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "var(--mono)",
+      fontSize: 10.5,
+      color: "var(--fg)",
+      whiteSpace: "nowrap",
+      overflow: "hidden"
+    }
+  }, c.len / b.stock > 0.14 ? ft(c.len) : "")), React.createElement("div", {
+    style: {
+      flex: 1,
+      backgroundImage: "repeating-linear-gradient(45deg,#18211A,#18211A 4px,#202B22 4px,#202B22 8px)"
+    },
+    title: "offcut"
+  })));
+}
+function App() {
+  const [cuts, setCuts] = useState([{
+    label: "STUD",
+    len: 92.625
+  }, {
+    label: "STUD",
+    len: 92.625
+  }, {
+    label: "JOIST",
+    len: 144
+  }, {
+    label: "HEADER",
+    len: 60
+  }]);
+  const [sent, setSent] = useState(false);
+  const [cutMin, setCutMin] = useState(1.0);
+  const boards = pack(cuts);
+  const used = cuts.reduce((s, c) => s + c.len, 0);
+  const stock = boards.reduce((s, b) => s + b.stock, 0);
+  const waste = stock ? (stock - used) / stock * 100 : 0;
+  const nCuts = sent ? 0 : cuts.length;
+  const time = sent ? 0 : cuts.length * cutMin;
+  return React.createElement("div", {
+    className: "panel"
+  }, React.createElement("div", {
+    className: "strip"
+  }, React.createElement("div", null, "STATE ", React.createElement("b", {
+    style: {
+      color: sent ? "var(--moss-lit)" : "var(--amber)"
+    }
+  }, sent ? "YARD" : "JOBSITE")), React.createElement("div", null, "QUEUE ", React.createElement("b", null, cuts.length), " pc"), React.createElement("div", null, "BOARDS ", React.createElement("b", null, boards.length)), React.createElement("div", null, "SOLVER ", React.createElement("b", null, "BFD")), React.createElement("div", null, "KERF ", React.createElement("b", null, "0.125"), "\"")), React.createElement("div", {
+    className: "body"
+  }, React.createElement("div", {
+    className: "lbl"
+  }, "ADD PIECE"), React.createElement("div", {
+    className: "keypad"
+  }, KEYS.map((k, i) => React.createElement("button", {
+    key: i,
+    className: "key",
+    onClick: () => {
+      setCuts(p => [...p, {
+        label: k.label,
+        len: k.len
+      }]);
+      setSent(false);
+    }
+  }, React.createElement("span", null, k.label), React.createElement("i", null, k.disp)))), React.createElement("div", {
+    className: "readout"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "v",
+    style: {
+      color: sent ? "var(--moss-lit)" : "var(--amber)"
+    }
+  }, hm(time)), React.createElement("div", {
+    className: "k"
+  }, "TIME AT SAW")), React.createElement("div", null, React.createElement("div", {
+    className: "v",
+    style: {
+      color: sent ? "var(--moss-lit)" : "var(--amber)"
+    }
+  }, nCuts), React.createElement("div", {
+    className: "k"
+  }, "CUTS ON SITE")), React.createElement("div", null, React.createElement("div", {
+    className: "v",
+    style: {
+      color: sent ? "var(--moss-lit)" : "var(--red)"
+    }
+  }, nCuts), React.createElement("div", {
+    className: "k"
+  }, "BLADE EXPOSURES"))), React.createElement("button", {
+    className: "cmd" + (sent ? " back" : ""),
+    disabled: cuts.length === 0,
+    onClick: () => setSent(s => !s)
+  }, sent ? "RETURN TO JOBSITE" : "SEND ORDER TO YARD"), React.createElement("div", {
+    className: "param"
+  }, "MIN / CUT — measure, mark, cut, move ", React.createElement("span", {
+    className: "num",
+    style: {
+      color: "var(--fg)"
+    }
+  }, cutMin.toFixed(2)), React.createElement("input", {
+    type: "range",
+    min: "0.25",
+    max: "3",
+    step: "0.25",
+    value: cutMin,
+    onChange: e => setCutMin(parseFloat(e.target.value))
+  })), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      margin: "22px 0 10px"
+    }
+  }, React.createElement("span", {
+    className: "lbl",
+    style: {
+      margin: 0
+    }
+  }, "CUTTING PLAN — ", cuts.length, " PC / ", boards.length, " BOARDS", sent ? " / DELIVERED" : ""), React.createElement("button", {
+    className: "ghost",
+    onClick: () => {
+      setCuts([]);
+      setSent(false);
+    }
+  }, "CLEAR")), boards.map((b, i) => React.createElement(Board, {
+    key: i,
+    b: b,
+    idx: i
+  })), boards.length === 0 && React.createElement("div", {
+    style: {
+      fontFamily: "var(--mono)",
+      fontSize: 12.5,
+      color: "var(--dim)"
+    }
+  }, "Queue empty. Add a piece above."), boards.length > 0 && React.createElement("div", {
+    className: "readout",
+    style: {
+      marginTop: 14
+    }
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "v"
+  }, waste.toFixed(1), "%"), React.createElement("div", {
+    className: "k"
+  }, "MATERIAL WASTE")), React.createElement("div", null, React.createElement("div", {
+    className: "v"
+  }, boards.length), React.createElement("div", {
+    className: "k"
+  }, "BOARDS ", sent ? "PRE-CUT" : "TO CUT")), React.createElement("div", null, React.createElement("div", {
+    className: "v"
+  }, ft(used)), React.createElement("div", {
+    className: "k"
+  }, "LUMBER NEEDED")))));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
+</script>
+</body>
+</html>

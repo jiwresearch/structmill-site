@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pick a project — Structmill</title>
+<meta name="description" content="From a privacy fence to a full house: how much on-site sawing a pre-cut framing package removes, and how the lumber order changes." />
+<link rel="canonical" href="https://structmill.com/demo/projects/" />
+<meta name="theme-color" content="#F5F0E6" />
+<meta property="og:title" content="Pick a project — Structmill" />
+<meta property="og:description" content="From a fence to a full house, the crew never picks up a saw." />
+<meta property="og:url" content="https://structmill.com/demo/projects/" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/demo/assets/fonts.css">
+<script src="/demo/assets/vendor/react.production.min.js"></script>
+<script src="/demo/assets/vendor/react-dom.production.min.js"></script>
+<style>
+  :root{
+    /* ---- site tokens, light side (match style.css) ---- */
+    --paper:#F5F0E6; --paper-deep:#ECE5D4;
+    --ink:#1A1A1A; --ink-soft:#3A3A36;
+    --moss:#355E3B; --moss-deep:#234229; --moss-faint:#D9E2D7;
+    --rule:rgba(53,94,59,.25);
+
+    /* ---- dark instrument ramp, same 129° hue as --moss ---- */
+    --panel:#0D120E; --panel-2:#141C15; --panel-3:#1C271D;
+    --hair:#2A3A2C; --fg:#DCE5DC; --dim:#8AA08D;
+
+    /* ---- moss lifted for dark panels ----
+       --moss #355E3B is only 1.6:1 on --panel, unreadable as an accent.
+       Same hue (129°), same family, raised in lightness:
+       --moss-mid  L45%  5.3:1  fills, gauges, hover
+       --moss-lit  L62%  8.7:1  readout values, active borders, live state
+       --moss-hi   L75% 13.0:1  hover / emphasis                      */
+    --moss-mid:#50955B; --moss-lit:#7FBD88; --moss-hi:#A9D6B0;
+
+    --amber:#C77B33; --red:#C4472C;
+
+    --display:"Zilla Slab","Roboto Slab",Georgia,serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--moss)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+
+  .topbar{border-bottom:1px solid var(--rule)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;
+    gap:16px;padding-top:15px;padding-bottom:15px;flex-wrap:wrap}
+  .mark{display:inline-flex;align-items:center;gap:.5em;font-family:var(--display);
+    font-weight:700;font-size:23px;line-height:1;color:var(--moss);
+    text-decoration:none;letter-spacing:-.02em}
+  .mark .logo-mark{width:1.15em;height:1.02em;flex-shrink:0}
+  .nav{display:flex;gap:20px;font-size:14px;font-family:var(--mono)}
+  .nav a{color:var(--ink-soft);text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent}
+  .nav a:hover{color:var(--moss);border-bottom-color:var(--moss)}
+  .nav a[aria-current="page"]{border-bottom-color:var(--moss-deep);color:var(--moss-deep);font-weight:600}
+
+  .pagehead{padding:34px 0 4px}
+  .pagehead h1{font-family:var(--display);font-size:34px;font-weight:700;
+    letter-spacing:-.015em;line-height:1.05;margin:0 0 8px;color:var(--moss)}
+  .pagehead p{margin:0;max-width:60ch;color:var(--ink-soft)}
+
+  .panel{background:var(--panel);border:1px solid var(--hair);border-radius:4px;
+    margin:22px 0;color:var(--fg);overflow:hidden}
+  .strip{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--hair);background:var(--panel-2)}
+  .strip div{padding:9px 14px;border-right:1px solid var(--hair);font-family:var(--mono);
+    font-size:11.5px;letter-spacing:.4px;color:var(--dim);white-space:nowrap}
+  .strip div b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
+  .body{padding:18px}
+  .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.5px;color:var(--dim);margin-bottom:9px}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+
+  .sel{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+  .tile{flex:0 0 auto;min-width:108px;background:var(--panel-3);border:1px solid var(--hair);
+    border-radius:3px;padding:12px 10px;cursor:pointer;text-align:center;color:var(--fg);font-family:var(--mono)}
+  .tile:hover{border-color:var(--moss-lit)}
+  .tile:focus-visible{outline:2px solid var(--moss-lit);outline-offset:2px}
+  .tile[data-on="1"]{border-color:var(--moss-lit);background:#1F2C21}
+  .tile .n{font-size:12px;font-weight:600;margin-top:6px}
+  .tile .d{font-size:10.5px;color:var(--dim);margin-top:2px}
+
+  .gauge{height:30px;border:1px solid var(--hair);border-radius:2px;overflow:hidden;
+    display:flex;align-items:center;background:var(--panel-2)}
+  .gauge .fill{height:100%;display:flex;align-items:center;justify-content:flex-end;
+    padding-right:10px;font-family:var(--mono);font-variant-numeric:tabular-nums;
+    font-weight:600;font-size:13px;color:var(--panel)}
+
+  .readout{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--hair);
+    border-radius:3px;background:var(--panel-2)}
+  .readout > div{padding:15px 12px;text-align:center;border-right:1px solid var(--hair)}
+  .readout > div:last-child{border-right:none}
+  .readout .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;
+    font-size:26px;line-height:1.1;letter-spacing:-.5px}
+  .readout .k{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:6px;letter-spacing:.4px}
+
+  .param{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+  .param input[type=range]{width:100%;margin-top:8px;accent-color:var(--moss-lit)}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .col{border:1px solid var(--hair);border-radius:3px;padding:12px;background:var(--panel-2)}
+  .col h4{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.4px}
+  .col .sub{font-family:var(--mono);font-size:10.5px;color:var(--dim);margin:2px 0 10px}
+  .row{display:flex;justify-content:space-between;font-family:var(--mono);
+    font-variant-numeric:tabular-nums;font-size:12.5px;padding:3px 0;border-bottom:1px solid var(--hair)}
+  .tot{display:flex;justify-content:space-between;font-family:var(--mono);
+    font-variant-numeric:tabular-nums;font-size:14px;font-weight:600;margin-top:9px}
+
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{border:1px solid var(--hair);border-radius:2px;padding:4px 9px;
+    font-family:var(--mono);font-size:11.5px;color:var(--fg)}
+  .chip span{color:var(--dim)}
+
+  .note{border-top:1px solid var(--rule);margin-top:34px;padding:24px 0 8px;max-width:66ch}
+  .note h2{font-family:var(--display);font-size:19px;font-weight:700;margin:0 0 8px;color:var(--moss)}
+  .note p{margin:0 0 14px;font-size:15px;color:var(--ink-soft)}
+  footer{border-top:1px solid var(--rule);margin-top:22px;padding:20px 0 40px;
+    font-family:var(--mono);font-size:12.5px;color:var(--moss)}
+  @keyframes seat{from{opacity:.35}to{opacity:1}}
+  @media (max-width:600px){.cols{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="/">
+      <svg class="logo-mark" viewBox="0 0 36 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true">
+        <line x1="5"  y1="26" x2="29" y2="26"/>
+        <line x1="9"  y1="22" x2="27" y2="22"/>
+        <line x1="3"  y1="18" x2="31" y2="18"/>
+        <line x1="11" y1="14" x2="25" y2="14"/>
+        <line x1="7"  y1="10" x2="29" y2="10"/>
+      </svg>
+      <span>Structmill</span>
+    </a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/demo/cut-list/">Build a list</a>
+      <a href="/demo/projects/" aria-current="page">Pick a project</a>
+      <a href="mailto:joseph@structmill.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap pagehead">
+  <h1>Pick a project</h1>
+  <p>A privacy fence and an 1,800 square foot house are the same problem at different
+  scales: a list of pieces, a pile of stock lengths, and someone at a saw closing the gap.
+  Pick one and see how much of that closing work disappears.</p>
+</div>
+
+<div class="wrap"><div id="root"></div></div>
+
+<div class="wrap">
+  <div class="note">
+    <h2>How the two columns are built</h2>
+    <p>The left column orders by piece type — one stock length per type, no nesting between
+    different pieces, cut to size on site. That is how most framing packages leave a yard
+    today. The right column solves the whole cut list at once, so a sixteen-foot board can
+    carry a joist and two blocks instead of a joist and an offcut.</p>
+    <p>Both are computed live here with a best-fit packer. The engine at a yard runs
+    Gilmore–Gomory column generation across every order in the queue, not one job at a
+    time, so pooled numbers beat what you see on this page.</p>
+    <h2>What the time figure claims</h2>
+    <p>Sawing only: pieces multiplied by minutes per cut, at a rate you set. Handling and
+    fastening aren't counted, because they happen either way. The claim is narrow on
+    purpose — the saw is what leaves, not the labor of building.</p>
+    <h2>If you run a yard</h2>
+    <p>The right-hand column is a product your builders are already asking for.
+    <a href="mailto:joseph@structmill.com">joseph@structmill.com</a> · (412) 667-1980</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Structmill · Morgantown, WV · joseph@structmill.com · (412) 667-1980<br>
+    Smarter Lumber. Right on Time. · Patent pending.
+  </div>
+</footer>
+
+<script>
+const {
+  useState
+} = React;
+const STOCK = [96, 120, 144, 168, 192];
+const STOCK_LABEL = {
+  96: "8 FT",
+  120: "10 FT",
+  144: "12 FT",
+  168: "14 FT",
+  192: "16 FT"
+};
+const KERF = 0.125;
+const ft = n => {
+  const f = Math.floor(n / 12);
+  const i = Math.round(n - f * 12);
+  return i === 0 ? f + "'-0" : f + "'-" + i;
+};
+const hm = m => {
+  const h = Math.floor(m / 60);
+  const r = Math.round(m % 60);
+  return h > 0 ? h + ":" + String(r).padStart(2, "0") : r + " min";
+};
+const ICONS = {
+  fence: React.createElement("g", null, React.createElement("line", {
+    x1: "2",
+    y1: "10",
+    x2: "30",
+    y2: "10"
+  }), React.createElement("line", {
+    x1: "2",
+    y1: "17",
+    x2: "30",
+    y2: "17"
+  }), [4, 10, 16, 22, 28].map(x => React.createElement("line", {
+    key: x,
+    x1: x,
+    y1: "4",
+    x2: x,
+    y2: "22"
+  }))),
+  shed: React.createElement("g", null, React.createElement("polyline", {
+    points: "4,12 16,5 28,12"
+  }), React.createElement("rect", {
+    x: "6",
+    y: "12",
+    width: "20",
+    height: "10"
+  }), React.createElement("rect", {
+    x: "13",
+    y: "15",
+    width: "6",
+    height: "7"
+  })),
+  deck: React.createElement("g", null, React.createElement("rect", {
+    x: "3",
+    y: "10",
+    width: "26",
+    height: "3"
+  }), React.createElement("line", {
+    x1: "6",
+    y1: "13",
+    x2: "6",
+    y2: "22"
+  }), React.createElement("line", {
+    x1: "26",
+    y1: "13",
+    x2: "26",
+    y2: "22"
+  }), React.createElement("line", {
+    x1: "3",
+    y1: "4",
+    x2: "17",
+    y2: "4"
+  }), [5, 11, 17].map(x => React.createElement("line", {
+    key: x,
+    x1: x,
+    y1: "4",
+    x2: x,
+    y2: "10"
+  }))),
+  garage: React.createElement("g", null, React.createElement("polyline", {
+    points: "3,11 16,4 29,11"
+  }), React.createElement("rect", {
+    x: "5",
+    y: "11",
+    width: "22",
+    height: "11"
+  }), React.createElement("rect", {
+    x: "9",
+    y: "15",
+    width: "14",
+    height: "7"
+  }), React.createElement("line", {
+    x1: "9",
+    y1: "18",
+    x2: "23",
+    y2: "18"
+  })),
+  addition: React.createElement("g", null, React.createElement("polyline", {
+    points: "3,12 12,5 21,12"
+  }), React.createElement("rect", {
+    x: "5",
+    y: "12",
+    width: "14",
+    height: "10"
+  }), React.createElement("rect", {
+    x: "19",
+    y: "15",
+    width: "9",
+    height: "7"
+  })),
+  house: React.createElement("g", null, React.createElement("polyline", {
+    points: "2,13 16,3 30,13"
+  }), React.createElement("rect", {
+    x: "5",
+    y: "13",
+    width: "22",
+    height: "9"
+  }), React.createElement("rect", {
+    x: "13",
+    y: "17",
+    width: "6",
+    height: "5"
+  }), React.createElement("rect", {
+    x: "23",
+    y: "6",
+    width: "3",
+    height: "4"
+  }))
+};
+function Icon({
+  name,
+  size,
+  color
+}) {
+  return React.createElement("svg", {
+    width: size,
+    height: size * 0.78,
+    viewBox: "0 0 32 25",
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.5",
+    strokeLinejoin: "round",
+    strokeLinecap: "round",
+    "aria-hidden": "true"
+  }, ICONS[name]);
+}
+const PROJECTS = [{
+  name: "FENCE",
+  icon: "fence",
+  desc: "60 ft × 6 ft",
+  pieces: [{
+    label: "Picket",
+    len: 72,
+    qty: 60
+  }, {
+    label: "Rail",
+    len: 96,
+    qty: 20
+  }, {
+    label: "Post",
+    len: 96,
+    qty: 8
+  }]
+}, {
+  name: "SHED",
+  icon: "shed",
+  desc: "8 × 10",
+  pieces: [{
+    label: "Stud",
+    len: 92.625,
+    qty: 22
+  }, {
+    label: "Plate",
+    len: 96,
+    qty: 6
+  }, {
+    label: "Rafter",
+    len: 60,
+    qty: 10
+  }, {
+    label: "Blocking",
+    len: 14.5,
+    qty: 16
+  }]
+}, {
+  name: "DECK",
+  icon: "deck",
+  desc: "12 × 16",
+  pieces: [{
+    label: "Joist",
+    len: 144,
+    qty: 14
+  }, {
+    label: "Rim",
+    len: 192,
+    qty: 2
+  }, {
+    label: "Beam",
+    len: 192,
+    qty: 3
+  }, {
+    label: "Blocking",
+    len: 14.5,
+    qty: 26
+  }, {
+    label: "Rail",
+    len: 72,
+    qty: 8
+  }]
+}, {
+  name: "GARAGE",
+  icon: "garage",
+  desc: "2-car detached",
+  pieces: [{
+    label: "Wall stud",
+    len: 104.625,
+    qty: 64
+  }, {
+    label: "Plate",
+    len: 192,
+    qty: 14
+  }, {
+    label: "Joist",
+    len: 168,
+    qty: 22
+  }, {
+    label: "Rafter",
+    len: 156,
+    qty: 28
+  }, {
+    label: "Header",
+    len: 120,
+    qty: 4
+  }, {
+    label: "Blocking",
+    len: 22.5,
+    qty: 40
+  }]
+}, {
+  name: "ADDITION",
+  icon: "addition",
+  desc: "14 × 16 bump-out",
+  pieces: [{
+    label: "Wall stud",
+    len: 92.625,
+    qty: 78
+  }, {
+    label: "Top plate",
+    len: 192,
+    qty: 16
+  }, {
+    label: "Floor joist",
+    len: 180,
+    qty: 24
+  }, {
+    label: "Ceiling joist",
+    len: 168,
+    qty: 20
+  }, {
+    label: "Rafter",
+    len: 144,
+    qty: 24
+  }, {
+    label: "Header",
+    len: 84,
+    qty: 6
+  }, {
+    label: "Cripple",
+    len: 16,
+    qty: 30
+  }, {
+    label: "Blocking",
+    len: 22.5,
+    qty: 44
+  }]
+}, {
+  name: "HOUSE",
+  icon: "house",
+  desc: "1,800 sq ft",
+  pieces: [{
+    label: "Ext stud",
+    len: 104.625,
+    qty: 180
+  }, {
+    label: "Int stud",
+    len: 92.625,
+    qty: 130
+  }, {
+    label: "Top plate",
+    len: 192,
+    qty: 40
+  }, {
+    label: "Floor joist",
+    len: 180,
+    qty: 58
+  }, {
+    label: "Ceiling joist",
+    len: 168,
+    qty: 52
+  }, {
+    label: "Rafter",
+    len: 156,
+    qty: 68
+  }, {
+    label: "Header",
+    len: 72,
+    qty: 22
+  }, {
+    label: "Cripple",
+    len: 16,
+    qty: 90
+  }, {
+    label: "Blocking",
+    len: 22.5,
+    qty: 140
+  }, {
+    label: "Fireblock",
+    len: 14.5,
+    qty: 96
+  }]
+}];
+function pack(pieces) {
+  const cuts = [];
+  pieces.forEach(p => {
+    for (let i = 0; i < p.qty; i++) cuts.push(p.len);
+  });
+  cuts.sort((a, b) => b - a);
+  const boards = [];
+  for (const len of cuts) {
+    let best = -1,
+      bestRem = Infinity;
+    for (let i = 0; i < boards.length; i++) {
+      const need = len + (boards[i].cuts.length ? KERF : 0);
+      const rem = boards[i].rem - need;
+      if (rem >= 0 && rem < bestRem) {
+        bestRem = rem;
+        best = i;
+      }
+    }
+    if (best >= 0) {
+      const b = boards[best];
+      b.cuts.push(len);
+      b.rem -= len + (b.cuts.length > 1 ? KERF : 0);
+    } else {
+      const s = STOCK.find(x => x >= len) || STOCK[STOCK.length - 1];
+      boards.push({
+        stock: s,
+        rem: s - len,
+        cuts: [len]
+      });
+    }
+  }
+  return boards;
+}
+function baseline(pieces) {
+  let boards = 0,
+    stock = 0,
+    used = 0;
+  const byStock = {};
+  pieces.forEach(p => {
+    const s = STOCK.find(x => x >= p.len) || STOCK[STOCK.length - 1];
+    const per = Math.max(1, Math.floor(s / (p.len + KERF)));
+    const b = Math.ceil(p.qty / per);
+    boards += b;
+    stock += b * s;
+    used += p.len * p.qty;
+    byStock[s] = (byStock[s] || 0) + b;
+  });
+  return {
+    boards,
+    waste: (stock - used) / stock * 100,
+    byStock
+  };
+}
+function metrics(pieces) {
+  const gg = pack(pieces);
+  const totalCuts = pieces.reduce((s, p) => s + p.qty, 0);
+  const ggStock = gg.reduce((s, b) => s + b.stock, 0);
+  const ggUsed = pieces.reduce((s, p) => s + p.len * p.qty, 0);
+  const ggWaste = ggStock ? (ggStock - ggUsed) / ggStock * 100 : 0;
+  const bl = baseline(pieces);
+  const ggByStock = {};
+  gg.forEach(b => {
+    ggByStock[b.stock] = (ggByStock[b.stock] || 0) + 1;
+  });
+  const stockRows = STOCK.filter(s => bl.byStock[s] || ggByStock[s]).map(s => ({
+    stock: s,
+    without: bl.byStock[s] || 0,
+    with: ggByStock[s] || 0
+  }));
+  return {
+    totalCuts,
+    ggBoards: gg.length,
+    blBoards: bl.boards,
+    ggWaste,
+    wasteSaved: Math.max(0, bl.waste - ggWaste),
+    stockRows
+  };
+}
+function App() {
+  const [sel, setSel] = useState(2);
+  const [cutMin, setCutMin] = useState(1.0);
+  const p = PROJECTS[sel];
+  const m = metrics(p.pieces);
+  const saw = m.totalCuts * cutMin;
+  return React.createElement("div", {
+    className: "panel"
+  }, React.createElement("div", {
+    className: "strip"
+  }, React.createElement("div", null, "PROJECT ", React.createElement("b", null, p.name)), React.createElement("div", null, "PIECES ", React.createElement("b", null, m.totalCuts)), React.createElement("div", null, "BOARDS ", React.createElement("b", null, m.ggBoards)), React.createElement("div", null, "SOLVER ", React.createElement("b", null, "BFD")), React.createElement("div", null, "KERF ", React.createElement("b", null, "0.125"), "\"")), React.createElement("div", {
+    className: "body"
+  }, React.createElement("div", {
+    className: "lbl"
+  }, "SELECT PROJECT"), React.createElement("div", {
+    className: "sel"
+  }, PROJECTS.map((pr, i) => React.createElement("button", {
+    key: i,
+    className: "tile",
+    "data-on": i === sel ? "1" : "0",
+    onClick: () => setSel(i)
+  }, React.createElement(Icon, {
+    name: pr.icon,
+    size: 32,
+    color: i === sel ? "#7FBD88" : "#8AA08D"
+  }), React.createElement("div", {
+    className: "n"
+  }, pr.name), React.createElement("div", {
+    className: "d"
+  }, pr.desc)))), React.createElement("div", {
+    key: sel,
+    style: {
+      animation: "seat .14s linear"
+    }
+  }, React.createElement("div", {
+    className: "lbl",
+    style: {
+      marginTop: 22
+    }
+  }, "TIME SPENT SAWING ON SITE"), React.createElement("div", {
+    style: {
+      fontFamily: "var(--mono)",
+      fontSize: 11,
+      color: "var(--amber)",
+      marginBottom: 5
+    }
+  }, "CUT ON SITE"), React.createElement("div", {
+    className: "gauge",
+    style: {
+      marginBottom: 10
+    }
+  }, React.createElement("div", {
+    className: "fill",
+    style: {
+      width: "100%",
+      background: "var(--amber)"
+    }
+  }, hm(saw))), React.createElement("div", {
+    style: {
+      fontFamily: "var(--mono)",
+      fontSize: 11,
+      color: "var(--moss-lit)",
+      marginBottom: 5
+    }
+  }, "DELIVERED PRE-CUT"), React.createElement("div", {
+    className: "gauge",
+    style: {
+      marginBottom: 14,
+      paddingLeft: 10,
+      fontFamily: "var(--mono)",
+      fontWeight: 600,
+      fontSize: 13,
+      color: "var(--moss-lit)"
+    }
+  }, "0 min"), React.createElement("div", {
+    style: {
+      border: "1px solid var(--moss-lit)",
+      borderRadius: 3,
+      padding: "13px",
+      textAlign: "center",
+      fontFamily: "var(--mono)",
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--moss-lit)",
+      background: "#16211A"
+    }
+  }, hm(saw), " OF SAWING REMOVED — ALL OF IT"), React.createElement("div", {
+    className: "param"
+  }, "MIN / CUT — measure, mark, cut, move ", React.createElement("span", {
+    className: "num",
+    style: {
+      color: "var(--fg)"
+    }
+  }, cutMin.toFixed(2)), React.createElement("input", {
+    type: "range",
+    min: "0.25",
+    max: "3",
+    step: "0.25",
+    value: cutMin,
+    onChange: e => setCutMin(parseFloat(e.target.value))
+  }), React.createElement("div", {
+    style: {
+      marginTop: 6
+    }
+  }, "Sawing only. Handling and fastening are not counted.")), React.createElement("div", {
+    className: "readout",
+    style: {
+      marginTop: 20
+    }
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "v",
+    style: {
+      color: "var(--moss-lit)"
+    }
+  }, m.totalCuts, " → 0"), React.createElement("div", {
+    className: "k"
+  }, "CUTS MADE ON SITE")), React.createElement("div", null, React.createElement("div", {
+    className: "v"
+  }, m.ggWaste.toFixed(1), "%"), React.createElement("div", {
+    className: "k"
+  }, "MATERIAL WASTE", m.wasteSaved > 0 ? " · −" + m.wasteSaved.toFixed(1) + " PTS" : ""))), React.createElement("div", {
+    className: "lbl",
+    style: {
+      marginTop: 22
+    }
+  }, "THE LUMBER ORDER"), React.createElement("div", {
+    className: "cols"
+  }, React.createElement("div", {
+    className: "col"
+  }, React.createElement("h4", {
+    style: {
+      color: "var(--amber)"
+    }
+  }, "ORDERED BY TYPE"), React.createElement("div", {
+    className: "sub"
+  }, "Cut to size on site"), m.stockRows.map((r, i) => React.createElement("div", {
+    className: "row",
+    key: i
+  }, React.createElement("span", {
+    style: {
+      color: "var(--dim)"
+    }
+  }, STOCK_LABEL[r.stock]), React.createElement("span", null, r.without))), React.createElement("div", {
+    className: "tot",
+    style: {
+      color: "var(--amber)"
+    }
+  }, React.createElement("span", null, "TOTAL"), React.createElement("span", null, m.blBoards))), React.createElement("div", {
+    className: "col"
+  }, React.createElement("h4", {
+    style: {
+      color: "var(--moss-lit)"
+    }
+  }, "STRUCTMILL"), React.createElement("div", {
+    className: "sub"
+  }, "Pre-cut, labeled, bundled"), m.stockRows.map((r, i) => React.createElement("div", {
+    className: "row",
+    key: i
+  }, React.createElement("span", {
+    style: {
+      color: "var(--dim)"
+    }
+  }, STOCK_LABEL[r.stock]), React.createElement("span", null, r.with))), React.createElement("div", {
+    className: "tot",
+    style: {
+      color: "var(--moss-lit)"
+    }
+  }, React.createElement("span", null, "TOTAL"), React.createElement("span", null, m.ggBoards)))), React.createElement("div", {
+    className: "lbl",
+    style: {
+      marginTop: 22
+    }
+  }, "BILL OF PIECES"), React.createElement("div", {
+    className: "chips"
+  }, p.pieces.map((pc, i) => React.createElement("div", {
+    className: "chip",
+    key: i
+  }, pc.qty, "× ", pc.label, " ", React.createElement("span", null, ft(pc.len))))))));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
+</script>
+</body>
+</html>
