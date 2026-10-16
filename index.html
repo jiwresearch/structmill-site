@@ -1,326 +1,138 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script>document.documentElement.classList.add('js')</script>
-  <title>Structmill — Pre-cut framing, from the lumberyard</title>
-  <meta name="description" content="Framing lumber cut to length before it ships: the offcut never leaves the yard, the saw never comes out, and the crew starts building the day the truck arrives." />
-  <meta name="theme-color" content="#F5F0E6" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Structmill" />
-  <meta property="og:title" content="Structmill — Pre-cut framing, from the lumberyard" />
-  <meta property="og:description" content="The offcut never leaves the yard. The saw never comes out. The crew starts building the day the truck arrives." />
-  <meta property="og:url" content="https://structmill.com/" />
-  <meta property="og:image" content="https://structmill.com/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Structmill. Every board leaves something behind." />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Structmill — Pre-cut framing, from the lumberyard" />
-  <meta name="twitter:description" content="The offcut never leaves the yard. The saw never comes out." />
-  <meta name="twitter:image" content="https://structmill.com/og-image.png" />
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structmill: framing, pre-cut at your lumberyard</title>
+<meta name="description" content="Structmill is a cutting cell and software for lumberyards: every framing board cut to length, labeled, and bundled by wall before it ships.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="canonical" href="https://structmill.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Structmill">
+<meta property="og:title" content="Structmill: framing, pre-cut at your lumberyard">
+<meta property="og:description" content="Structmill is a cutting cell and software for lumberyards: every framing board cut to length, labeled, and bundled by wall before it ships.">
+<meta property="og:url" content="https://structmill.com/">
+<meta property="og:image" content="https://structmill.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Structmill: framing, pre-cut at your lumberyard">
+<meta name="twitter:description" content="Structmill is a cutting cell and software for lumberyards: every framing board cut to length, labeled, and bundled by wall before it ships.">
+<meta name="twitter:image" content="https://structmill.com/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="wordmark" href="/">
-      <svg class="logo-mark" viewBox="0 0 36 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true">
-        <line x1="5"  y1="26" x2="29" y2="26"/>
-        <line x1="9"  y1="22" x2="27" y2="22"/>
-        <line x1="3"  y1="18" x2="31" y2="18"/>
-        <line x1="11" y1="14" x2="25" y2="14"/>
-        <line x1="7"  y1="10" x2="29" y2="10"/>
-      </svg>
-      <span class="logo-text">Structmill</span>
-    </a>
-    <nav class="topnav">
-      <a href="/demo/cut-list/">Build a list</a>
-      <a href="/demo/projects/">Pick a project</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<div style="font-family: Archivo, system-ui, sans-serif; color: #1F2A20; background: #FFFFFF; min-height: 100vh">
 
-  <main>
+<header style="border-bottom: 1px solid #DCDDD6">
+<nav class="sec" style="max-width: 1240px; margin: 0 auto; padding: 22px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="/" aria-label="Structmill home" style="display: flex"><img class="logo" src="/assets/structmill-lockup.svg" alt="Structmill" width="293" height="28"></a>
+<div class="nav-links" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px; font-weight: 500">
+<a href="/builders/" style="color: #3B463C; text-decoration: none">For builders</a>
+<a href="/lumberyards/" style="color: #3B463C; text-decoration: none">For lumberyards</a>
+<a href="#what" style="color: #3B463C; text-decoration: none">What we're building</a>
+</div>
+</nav>
+</header>
 
-    <!-- ───────── hero: one board, macro ───────── -->
-    <section class="hero">
-      <p class="eyebrow">Pre-cut framing, from the lumberyard</p>
+<section class="sec hero" aria-label="Structmill" style="padding: 88px 32px 96px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
+<h1 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(42px, 6vw, 84px); line-height: 1; letter-spacing: -0.015em; color: #1C3A19; max-width: 1040px">Framing, pre-cut at your lumberyard.</h1>
 
-      <figure class="board-fig" data-reveal>
-        <svg class="board-svg" viewBox="0 0 1200 300" role="img"
-             aria-label="A sixteen-foot board. The left portion becomes a wall; the right portion is cut off and thrown away.">
-          <defs>
-            <pattern id="waste-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width="8" height="8" fill="var(--paper-deep)"/>
-              <line x1="0" y1="0" x2="0" y2="8" stroke="var(--moss)" stroke-width="1.5" opacity="0.38"/>
-            </pattern>
-          </defs>
+<div role="img" aria-label="The Structmill system: a builder's cut list is optimized by Structmill software, cut, labeled and bundled by the Structmill cell at the lumberyard, delivered, and framed on the jobsite." style="overflow-x: auto; padding-bottom: 4px">
+<div class="flow-inner" style="min-width: 1060px; display: flex; flex-direction: column; gap: 14px">
+<div class="flow-grid" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 40px">
+<div style="position: relative; background: #FFFFFF; border: 1.5px solid #DCDDD6; border-radius: 8px; padding: 22px; min-height: 196px; display: flex; flex-direction: column; gap: 10px">
+<div class="flow-pic" style="height: 56px; display: flex; flex-direction: column; gap: 6px"><span style="height: 6px; width: 80%; background: #B9BFB6; border-radius: 2px"></span><span style="height: 6px; width: 64%; background: #B9BFB6; border-radius: 2px"></span><span style="height: 6px; width: 72%; background: #B9BFB6; border-radius: 2px"></span><span style="height: 6px; width: 50%; background: #B9BFB6; border-radius: 2px"></span></div>
+<span style="font-stretch: 112%; font-size: 21px; font-weight: 800; color: #1C3A19">Cut list</span>
+<span style="font-size: 14px; line-height: 1.5; color: #4F5A50">The builder plans the job, online or at the counter.</span>
+<svg class="flow-arrow" style="position: absolute; right: -34px; top: 50%; margin-top: -12px" width="28" height="24" viewBox="0 0 28 24" fill="none" stroke="#1C3A19" stroke-width="2" aria-hidden="true"><path d="M2 12h22M17 5l7 7-7 7"/></svg>
+</div>
+<div style="position: relative; background: #FFFFFF; border: 1.5px solid #DCDDD6; border-radius: 8px; padding: 22px; min-height: 196px; display: flex; flex-direction: column; gap: 10px">
+<div class="flow-pic" style="height: 56px; display: flex; flex-direction: column; justify-content: center; gap: 8px"><span style="display: flex; height: 14px"><span style="flex: 6; background: #E3C998"></span><span style="width: 2px"></span><span style="flex: 3; background: #E3C998"></span><span style="width: 2px"></span><span style="flex: 1; background: #A89268"></span></span><span style="display: flex; height: 14px"><span style="flex: 5; background: #E3C998"></span><span style="width: 2px"></span><span style="flex: 4.6; background: #E3C998"></span><span style="width: 2px"></span><span style="flex: 0.4; background: #A89268"></span></span></div>
+<span style="font-stretch: 112%; font-size: 21px; font-weight: 800; color: #1C3A19">Optimized plan</span>
+<span style="font-size: 14px; line-height: 1.5; color: #4F5A50">Structmill software fits every cut onto stock lengths.</span>
+<svg class="flow-arrow" style="position: absolute; right: -34px; top: 50%; margin-top: -12px" width="28" height="24" viewBox="0 0 28 24" fill="none" stroke="#1C3A19" stroke-width="2" aria-hidden="true"><path d="M2 12h22M17 5l7 7-7 7"/></svg>
+</div>
+<div style="position: relative; background: #1C3A19; border-radius: 8px; padding: 22px; min-height: 196px; display: flex; flex-direction: column; gap: 10px; color: #FFFFFF">
+<div class="flow-pic" style="height: 56px; display: flex; align-items: flex-end; gap: 4px"><span style="flex: 1; height: 100%; border: 2px solid #E3C998; border-radius: 4px"></span><span style="width: 30px; height: 60%; border: 2px solid #E3C998; border-radius: 4px"></span></div>
+<span style="font-stretch: 112%; font-size: 21px; font-weight: 800">Structmill cell</span>
+<span style="font-size: 14px; line-height: 1.5; color: #DCE6D4">Cuts every board to length, labels it, and bundles it.</span>
+<svg class="flow-arrow" style="position: absolute; right: -34px; top: 50%; margin-top: -12px" width="28" height="24" viewBox="0 0 28 24" fill="none" stroke="#1C3A19" stroke-width="2" aria-hidden="true"><path d="M2 12h22M17 5l7 7-7 7"/></svg>
+</div>
+<div style="position: relative; background: #FFFFFF; border: 1.5px solid #DCDDD6; border-radius: 8px; padding: 22px; min-height: 196px; display: flex; flex-direction: column; gap: 10px">
+<div class="flow-pic" style="height: 56px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px"><span style="height: 10px; width: 90%; background: #E3C998; border-radius: 2px"></span><span style="height: 10px; width: 90%; background: #D4B57E; border-radius: 2px"></span><span style="height: 10px; width: 90%; background: #B89C69; border-radius: 2px"></span></div>
+<span style="font-stretch: 112%; font-size: 21px; font-weight: 800; color: #1C3A19">Bundles</span>
+<span style="font-size: 14px; line-height: 1.5; color: #4F5A50">Grouped by wall and floor, delivered by the yard.</span>
+<svg class="flow-arrow" style="position: absolute; right: -34px; top: 50%; margin-top: -12px" width="28" height="24" viewBox="0 0 28 24" fill="none" stroke="#1C3A19" stroke-width="2" aria-hidden="true"><path d="M2 12h22M17 5l7 7-7 7"/></svg>
+</div>
+<div style="background: #FFFFFF; border: 1.5px solid #DCDDD6; border-radius: 8px; padding: 22px; min-height: 196px; display: flex; flex-direction: column; gap: 10px">
+<div class="flow-pic" style="height: 56px; display: flex; align-items: flex-end; gap: 6px; border-bottom: 3px solid #D4B57E"><span style="width: 6px; height: 100%; background: #E3C998"></span><span style="width: 6px; height: 100%; background: #E3C998"></span><span style="width: 6px; height: 100%; background: #E3C998"></span><span style="width: 6px; height: 100%; background: #E3C998"></span><span style="width: 6px; height: 100%; background: #E3C998"></span></div>
+<span style="font-stretch: 112%; font-size: 21px; font-weight: 800; color: #1C3A19">Ready to frame</span>
+<span style="font-size: 14px; line-height: 1.5; color: #4F5A50">Open a bundle, build that wall. No saw.</span>
+</div>
+</div>
+<div class="flow-lanes" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 40px; font-size: 14px; font-weight: 600">
+<div style="border-top: 3px solid #B9BFB6; padding-top: 8px; color: #6B756B">Builder</div>
+<div style="grid-column: span 3; border-top: 3px solid #1C3A19; padding-top: 8px; color: #1C3A19">At the lumberyard</div>
+<div style="border-top: 3px solid #B9BFB6; padding-top: 8px; color: #6B756B">Jobsite</div>
+</div>
+</div>
+</div>
 
-          <!-- top dimension: full stock -->
-          <g class="dim">
-            <line x1="60" y1="62" x2="1140" y2="62"/>
-            <line x1="60" y1="52" x2="60" y2="72"/>
-            <line x1="1140" y1="52" x2="1140" y2="72"/>
-          </g>
-          <text class="dim-label" x="600" y="44" text-anchor="middle">16&#8242;-0 STOCK, OFF THE TRUCK</text>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+<a class="door" href="/builders/" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 104px; padding: 0 32px; background: #E3C998; color: #1C3A19; border-radius: 8px; text-decoration: none">
+<span style="display: flex; flex-direction: column; gap: 4px"><span class="door-title" style="font-stretch: 125%; font-size: 28px; font-weight: 800">I build</span><span style="font-size: 15px; font-weight: 500">Get it delivered cut and labeled</span></span>
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+</a>
+<a class="door" href="/lumberyards/" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 104px; padding: 0 32px; background: #FFFFFF; color: #1C3A19; border: 2px solid #1C3A19; border-radius: 8px; text-decoration: none">
+<span style="display: flex; flex-direction: column; gap: 4px"><span class="door-title" style="font-stretch: 125%; font-size: 28px; font-weight: 800">I run a lumberyard</span><span style="font-size: 15px; font-weight: 500; color: #4F5A50">See the machine</span></span>
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+</a>
+</div>
+</div>
+</section>
 
-          <!-- the board -->
-          <g class="board-body">
-            <rect class="board-waste" x="820" y="110" width="320" height="80" fill="url(#waste-hatch)"/>
-            <g class="board-grow">
-              <rect class="board-used" x="60" y="110" width="760" height="80"/>
-            </g>
-            <rect class="board-outline" x="60" y="110" width="1080" height="80"/>
-            <line class="board-cut" x1="820" y1="96" x2="820" y2="204"/>
-          </g>
+<section class="sec" id="what" aria-label="What we're building" style="background: #F5F5F2; padding: 96px 32px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-wrap: wrap; gap: 48px">
+<h2 style="flex: 1 1 420px; margin: 0; font-stretch: 125%; font-weight: 800; font-size: 40px; line-height: 1.05; color: #1C3A19">What we're building</h2>
+<div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px; font-size: 19px; line-height: 1.6; color: #3B463C">
+<p style="margin: 0"><strong style="color: #1C3A19">A cutting cell and the software that runs it, installed at the lumberyard.</strong> The yard takes a builder's approved cut list. The cell cuts every board to length, labels it, and bundles it by wall and floor.</p>
+<p style="margin: 0">Lumberyards buy the cell and sell pre-cut packages. Builders order through their yard, the way they buy lumber today.</p>
+<p style="margin: 0">Next, the same packages for anyone who wants to build something: no saw, no hours of measuring and cutting, no carpentry experience needed.</p>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 10px; border-top: 3px solid #1C3A19; padding-top: 18px"><h3 style="margin: 0; font-stretch: 115%; font-size: 22px; font-weight: 800; color: #1C3A19">Less waste</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3B463C">Every cut is planned before the saw runs. Fewer boards bought, less in the dumpster.</p></div>
+<div style="display: flex; flex-direction: column; gap: 10px; border-top: 3px solid #1C3A19; padding-top: 18px"><h3 style="margin: 0; font-stretch: 115%; font-size: 22px; font-weight: 800; color: #1C3A19">Less time</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3B463C">Crews frame instead of measuring and cutting on site.</p></div>
+<div style="display: flex; flex-direction: column; gap: 10px; border-top: 3px solid #1C3A19; padding-top: 18px"><h3 style="margin: 0; font-stretch: 115%; font-size: 22px; font-weight: 800; color: #1C3A19">Safer sites</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3B463C">Less sawing on the jobsite means less time next to a running blade.</p></div>
+<div style="display: flex; flex-direction: column; gap: 10px; border-top: 3px solid #1C3A19; padding-top: 18px"><h3 style="margin: 0; font-stretch: 115%; font-size: 22px; font-weight: 800; color: #1C3A19">Precision</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3B463C">Every piece machine-cut to the length on the plan, every time.</p></div>
+</div>
+</div>
+</section>
 
-          <!-- bottom dimensions -->
-          <g class="dim">
-            <line x1="60" y1="238" x2="820" y2="238"/>
-            <line x1="60" y1="228" x2="60" y2="248"/>
-            <line x1="820" y1="228" x2="820" y2="248"/>
-            <line x1="820" y1="238" x2="1140" y2="238"/>
-            <line x1="1140" y1="228" x2="1140" y2="248"/>
-          </g>
-          <text class="dim-label" x="440" y="270" text-anchor="middle">BECOMES A WALL</text>
-          <text class="dim-label waste-label" x="980" y="270" text-anchor="middle">THROWN AWAY</text>
-        </svg>
-      </figure>
+<section class="sec" id="questions" aria-label="Questions" style="padding: 96px 32px">
+<div style="max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+<h2 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 36px; color: #1C3A19">Questions</h2>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #DCDDD6">
+<details open style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 700; cursor: pointer">What is Structmill building?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">A machine and software that let a lumberyard cut a builder's framing to length, label every piece, and bundle it by wall and floor before it ships. The yard installs it. Builders get their framing pre-cut.</p></details>
+<details style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 700; cursor: pointer">How does it help a builder?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">Your framing shows up cut, labeled, and sorted by wall. You buy less lumber, throw away less, spend less time cutting, and run fewer saws on site. <a href="/builders/">See it on a wall</a>.</p></details>
+<details style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 700; cursor: pointer">How does it help a lumberyard?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">You sell finished framing packages instead of boards by the piece, match the pre-cut programs the chains offer without building a plant, and give your builders a reason to order every job from you. <a href="/lumberyards/">See the machine</a>.</p></details>
+<details style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 700; cursor: pointer">How much does it cost?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">Lumberyards buy the cell outright or lease to own, with an annual software and maintenance package. Builders pay their lumberyard for pre-cut packages, at a price the yard sets. Planning with Structmill is free.</p></details>
+</div>
+</div>
+</section>
 
-      <h1 class="hero-title">Every board leaves something behind.</h1>
-      <p class="hero-tag">
-        Structmill solves the cut list at the yard, so the offcut never gets on the truck.
-      </p>
+<footer class="sec" style="border-top: 1px solid #DCDDD6; padding: 48px 32px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; font-size: 15px; color: #4F5A50">
+<img class="logo" src="/assets/structmill-lockup.svg" alt="Structmill" width="293" height="28">
+<div style="display: flex; flex-wrap: wrap; gap: 24px"><a href="mailto:joseph@structmill.com">joseph@structmill.com</a><span>Morgantown, West Virginia</span></div>
+</div>
+</footer>
 
-      <p class="scroll-cue"><a href="#swap">See what changes &darr;</a></p>
-    </section>
-
-    <!-- ───────── the swap: pile → sorted stacks ───────── -->
-    <section class="swap" id="swap" aria-labelledby="swap-h">
-      <h2 class="sr-only" id="swap-h">The same order, delivered two ways</h2>
-
-      <div class="swap-stage">
-        <div class="swap-inner">
-
-          <div class="swap-caps">
-            <p class="swap-cap cap-before">
-              <span class="swap-state">Cut on site</span>
-              <span class="swap-note">A stack of stock lengths and a saw. Every piece is measured, marked and cut in the weather.</span>
-            </p>
-            <p class="swap-cap cap-after">
-              <span class="swap-state">Delivered pre-cut</span>
-              <span class="swap-note">The same order, solved as one problem: sorted, labeled, bundled in the order it goes up.</span>
-            </p>
-          </div>
-
-          <div class="swap-figs">
-          <figure class="swap-fig swap-before">
-            <svg class="swap-svg" viewBox="0 200 900 195" role="img" aria-label="A disorganized heap of boards at odd angles on the ground.">
-              <line class="ground" x1="30" y1="378" x2="870" y2="378"/>
-              <g class="heap">
-                <rect x="120" y="352" width="260" height="14" transform="rotate(-3 250 359)"/>
-                <rect x="560" y="344" width="240" height="14" transform="rotate(-4 680 351)"/>
-                <rect x="100" y="336" width="160" height="14" transform="rotate(13 180 343)"/>
-                <rect x="300" y="344" width="200" height="14" transform="rotate(5 400 351)"/>
-                <rect x="420" y="350" width="180" height="14" transform="rotate(11 510 357)"/>
-                <rect x="180" y="332" width="300" height="14" transform="rotate(-8 330 339)"/>
-                <rect x="470" y="330" width="220" height="14" transform="rotate(-14 580 337)"/>
-                <rect x="600" y="318" width="150" height="14" transform="rotate(28 675 325)"/>
-                <rect x="150" y="310" width="120" height="14" transform="rotate(22 210 317)"/>
-                <rect x="250" y="318" width="150" height="14" transform="rotate(14 325 325)"/>
-                <rect x="330" y="306" width="280" height="14" transform="rotate(-6 470 313)"/>
-                <rect x="520" y="300" width="170" height="14" transform="rotate(17 605 307)"/>
-                <rect x="210" y="294" width="190" height="14" transform="rotate(3 305 301)"/>
-                <rect x="380" y="282" width="240" height="14" transform="rotate(9 500 289)"/>
-                <rect x="280" y="270" width="160" height="14" transform="rotate(-18 360 277)"/>
-                <rect x="440" y="262" width="130" height="14" transform="rotate(25 505 269)"/>
-                <rect x="330" y="248" width="200" height="14" transform="rotate(-11 430 255)"/>
-                <rect x="240" y="236" width="140" height="14" transform="rotate(7 310 243)"/>
-              </g>
-            </svg>
-          </figure>
-
-          <figure class="swap-fig swap-after">
-            <svg class="swap-svg" viewBox="0 200 900 195" role="img" aria-label="Four neat bundles of lumber, each strapped and labeled with a piece name, length and quantity.">
-              <line class="ground" x1="30" y1="378" x2="870" y2="378"/>
-
-              <g class="bundle">
-                <text class="tag" x="60" y="258">STUD</text>
-                <text class="tag tag-dim" x="60" y="274">92-5/8  &#215;22</text>
-                <rect x="60" y="357" width="200" height="13"/>
-                <rect x="60" y="340" width="200" height="13"/>
-                <rect x="60" y="323" width="200" height="13"/>
-                <rect x="60" y="306" width="200" height="13"/>
-                <rect x="60" y="289" width="200" height="13"/>
-                <line class="strap" x1="110" y1="285" x2="110" y2="374"/>
-                <line class="strap" x1="210" y1="285" x2="210" y2="374"/>
-              </g>
-
-              <g class="bundle">
-                <text class="tag" x="310" y="258">JOIST</text>
-                <text class="tag tag-dim" x="310" y="274">12&#8242;-0  &#215;14</text>
-                <rect x="310" y="357" width="260" height="13"/>
-                <rect x="310" y="340" width="260" height="13"/>
-                <rect x="310" y="323" width="260" height="13"/>
-                <rect x="310" y="306" width="260" height="13"/>
-                <rect x="310" y="289" width="260" height="13"/>
-                <line class="strap" x1="370" y1="285" x2="370" y2="374"/>
-                <line class="strap" x1="510" y1="285" x2="510" y2="374"/>
-              </g>
-
-              <g class="bundle">
-                <text class="tag" x="620" y="258">HEADER</text>
-                <text class="tag tag-dim" x="620" y="274">5&#8242;-0  &#215;6</text>
-                <rect x="620" y="357" width="110" height="13"/>
-                <rect x="620" y="340" width="110" height="13"/>
-                <rect x="620" y="323" width="110" height="13"/>
-                <rect x="620" y="306" width="110" height="13"/>
-                <line class="strap" x1="675" y1="302" x2="675" y2="374"/>
-              </g>
-
-              <g class="bundle">
-                <text class="tag" x="780" y="258">BLOCK</text>
-                <text class="tag tag-dim" x="780" y="274">22-1/2  &#215;26</text>
-                <rect x="780" y="357" width="60" height="13"/>
-                <rect x="780" y="340" width="60" height="13"/>
-                <rect x="780" y="323" width="60" height="13"/>
-                <rect x="780" y="306" width="60" height="13"/>
-                <line class="strap" x1="810" y1="302" x2="810" y2="374"/>
-              </g>
-            </svg>
-          </figure>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ───────── three ideas ───────── -->
-    <section class="ideas" aria-labelledby="ideas-h">
-      <h2 class="section-title" id="ideas-h">Less waste. No saw. Days back.</h2>
-
-      <ul class="idea-grid">
-        <li class="idea" data-reveal>
-          <svg class="idea-icon" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <rect x="4" y="18" width="40" height="14"/>
-            <rect x="44" y="18" width="16" height="14" stroke-dasharray="3 3"/>
-            <line x1="44" y1="12" x2="44" y2="38"/>
-          </svg>
-          <h3 class="idea-title">Waste stays at the yard</h3>
-          <p class="idea-body">
-            The whole list is solved at once, so one stock length carries several
-            pieces instead of one piece and a remnant. What is left over stays at
-            the yard, where it is still worth something.
-          </p>
-        </li>
-
-        <li class="idea" data-reveal>
-          <svg class="idea-icon" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="26" cy="24" r="14"/>
-            <line x1="26" y1="10" x2="26" y2="14"/>
-            <line x1="26" y1="34" x2="26" y2="38"/>
-            <line x1="12" y1="24" x2="16" y2="24"/>
-            <line x1="36" y1="24" x2="40" y2="24"/>
-            <line x1="14" y1="38" x2="54" y2="8" stroke-width="2.5"/>
-          </svg>
-          <h3 class="idea-title">No saw on site</h3>
-          <p class="idea-body">
-            Pieces arrive at final length, labeled and in the order they go up.
-            Nobody measures, nobody marks, and nobody makes the same cut for the
-            thousandth time at three in the afternoon.
-          </p>
-        </li>
-
-        <li class="idea" data-reveal>
-          <svg class="idea-icon" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="32" cy="24" r="16"/>
-            <polyline points="32,14 32,24 41,29"/>
-          </svg>
-          <h3 class="idea-title">Time back</h3>
-          <p class="idea-body">
-            Measuring and cutting is a real slice of every framing day, repeated
-            thousands of times per house. Delivered pre-cut, the crew starts
-            building the morning the truck shows up.
-          </p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ───────── demos ───────── -->
-    <section class="demos" id="demos" aria-labelledby="demos-h">
-      <h2 class="section-title" id="demos-h">Run it yourself.</h2>
-      <p class="section-deck">
-        Both of these solve real cut lists in your browser — the same packing
-        problem the yard engine solves, at a smaller scale.
-      </p>
-
-      <div class="demo-grid">
-        <a class="demo-card" href="/demo/cut-list/">
-          <div class="demo-mock" aria-hidden="true">
-            <div class="mock-strip"><span>STATE <b>JOBSITE</b></span><span>QUEUE <b>7</b></span><span>BOARDS <b>6</b></span></div>
-            <div class="mock-keys"><span>STUD</span><span>JOIST</span><span>HEADER</span></div>
-            <div class="mock-bars">
-              <div class="mock-bar"><i style="width:78%"></i></div>
-              <div class="mock-bar"><i style="width:54%"></i></div>
-              <div class="mock-bar"><i style="width:92%"></i></div>
-            </div>
-          </div>
-          <h3 class="demo-title">Build a list</h3>
-          <p class="demo-body">
-            Add pieces one at a time and watch the packing plan re-solve. Then
-            send the order to the yard and watch the saw time go to zero.
-          </p>
-          <span class="demo-go">Open the demo &rarr;</span>
-        </a>
-
-        <a class="demo-card" href="/demo/projects/">
-          <div class="demo-mock" aria-hidden="true">
-            <div class="mock-strip"><span>PROJECT <b>DECK</b></span><span>PIECES <b>53</b></span><span>BOARDS <b>30</b></span></div>
-            <div class="mock-tiles"><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div>
-            <div class="mock-gauges">
-              <div class="mock-gauge cut"><i></i></div>
-              <div class="mock-gauge pre"><i></i></div>
-            </div>
-          </div>
-          <h3 class="demo-title">Pick a project</h3>
-          <p class="demo-body">
-            A privacy fence and an 1,800 square foot house are the same problem at
-            different scales. Pick one and see how the lumber order changes.
-          </p>
-          <span class="demo-go">Open the demo &rarr;</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ───────── closing ───────── -->
-    <section id="contact" class="closing">
-      <h2 class="closing-title">Structmill exists to end this.</h2>
-      <p class="closing-body">
-        We are building automated pre-cutting that lives at the lumberyard,
-        so the right pieces — and only the right pieces — arrive on the truck.
-      </p>
-      <ul class="closing-links">
-        <li><a href="mailto:joseph@structmill.com">joseph@structmill.com</a></li>
-      </ul>
-    </section>
-
-    <footer class="site-foot">
-      <p class="legal">© Structmill LLC. Built in Morgantown, West Virginia.</p>
-    </footer>
-  </main>
-
-  <script src="script.js" defer></script>
+</div>
 </body>
 </html>

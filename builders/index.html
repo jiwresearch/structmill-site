@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structmill for builders: build it without the saw</title>
+<meta name="description" content="Frame a wall in Wall Lab and watch it become a pre-cut package: every board cut, labeled, and bundled at your lumberyard.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="canonical" href="https://structmill.com/builders/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Structmill">
+<meta property="og:title" content="Structmill for builders: build it without the saw">
+<meta property="og:description" content="Frame a wall in Wall Lab and watch it become a pre-cut package: every board cut, labeled, and bundled at your lumberyard.">
+<meta property="og:url" content="https://structmill.com/builders/">
+<meta property="og:image" content="https://structmill.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Structmill for builders: build it without the saw">
+<meta name="twitter:description" content="Frame a wall in Wall Lab and watch it become a pre-cut package: every board cut, labeled, and bundled at your lumberyard.">
+<meta name="twitter:image" content="https://structmill.com/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div style="font-family: Archivo, system-ui, sans-serif; color: #1F2A20; background: #FFFFFF; min-height: 100vh">
+
+<header style="border-bottom: 1px solid #DCDDD6">
+<nav class="sec" style="max-width: 1240px; margin: 0 auto; padding: 22px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="/" aria-label="Structmill home" style="display: flex"><img class="logo" src="/assets/structmill-lockup.svg" alt="Structmill" width="293" height="28"></a>
+<div class="nav-links" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px; font-weight: 500">
+<a href="/builders/" style="color: #1C3A19; text-decoration: none; font-weight: 700">For builders</a>
+<a href="/lumberyards/" style="color: #3B463C; text-decoration: none">For lumberyards</a>
+<a href="/#what" style="color: #3B463C; text-decoration: none">What we're building</a>
+<a class="nav-cta" href="#send" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; background: #1C3A19; color: #FFFFFF; font-weight: 700; border-radius: 6px; text-decoration: none">Send a cut list</a>
+</div>
+</nav>
+</header>
+
+<section class="sec hero" style="padding: 88px 32px 56px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
+<div style="flex: 1 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h1 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(48px, 7.5vw, 104px); line-height: 0.95; letter-spacing: -0.015em; color: #1C3A19">Build it without the saw.</h1>
+<p style="margin: 0; font-size: 21px; line-height: 1.5; color: #3B463C">Every board cut, labeled, and bundled at your lumberyard.</p>
+</div>
+<a href="#wall-lab" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 30px; background: #1C3A19; color: #FFFFFF; font-weight: 700; font-size: 17px; border-radius: 6px; text-decoration: none">Frame a wall</a>
+</div>
+</section>
+
+<section class="sec flush-top" id="wall-lab" aria-label="Wall Lab" style="padding: 0 32px 96px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px">
+<h2 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 34px; color: #1C3A19">Frame a wall. Watch it become a package.</h2>
+<span style="font-size: 15px; color: #6B756B">Change anything. The cut list and cutting plan update as you go.</span>
+</div>
+<div id="wall-lab-app" class="wl" style="font-family: Archivo, system-ui, sans-serif; color: #1F2A20; background: #FFFFFF; border: 1.5px solid #DCDDD6; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 28px; width: 100%">
+<div style="display: flex; flex-wrap: wrap; gap: 32px">
+<div class="wl-form" style="flex: 0 1 300px; min-width: 260px; display: flex; flex-direction: column; gap: 22px">
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; font-weight: 600">
+<span style="display: flex; justify-content: space-between"><span>Wall length</span><span id="wl-len-label" style="color: #1C3A19">18'</span></span>
+<input id="wl-len" type="range" min="6" max="40" step="1" value="18" style="accent-color: #1C3A19; width: 100%; min-height: 32px">
+</label>
+<fieldset style="margin: 0; padding: 0; border: none; display: flex; flex-direction: column; gap: 8px">
+<legend style="font-size: 15px; font-weight: 600; padding-bottom: 8px">Wall height</legend>
+<div style="display: flex; gap: 6px"><button type="button" data-h="8">8'</button><button type="button" data-h="9">9'</button><button type="button" data-h="10">10'</button></div>
+</fieldset>
+<fieldset style="margin: 0; padding: 0; border: none; display: flex; flex-direction: column; gap: 8px">
+<legend style="font-size: 15px; font-weight: 600; padding-bottom: 8px">Stud spacing</legend>
+<div style="display: flex; gap: 6px"><button type="button" data-sp="16">16" on center</button><button type="button" data-sp="24">24" on center</button></div>
+</fieldset>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 15px; font-weight: 600">Windows (36" × 48")</span>
+<div style="display: flex; align-items: center; gap: 10px">
+<button id="wl-down" type="button" aria-label="Fewer windows" style="width: 44px; height: 44px; border: 1.5px solid #1C3A19; border-radius: 6px; background: #FFFFFF; color: #1C3A19; font: 700 20px Archivo, sans-serif; cursor: pointer">−</button>
+<span id="wl-win" aria-live="polite" style="min-width: 32px; text-align: center; font-size: 20px; font-weight: 700">1</span>
+<button id="wl-up" type="button" aria-label="More windows" style="width: 44px; height: 44px; border: 1.5px solid #1C3A19; border-radius: 6px; background: #FFFFFF; color: #1C3A19; font: 700 20px Archivo, sans-serif; cursor: pointer">+</button>
+</div>
+<span id="wl-note" hidden style="font-size: 13px; color: #8A5A1F"></span>
+</div>
+<a id="wl-send" href="mailto:joseph@structmill.com?subject=My%20cut%20list&amp;body=Hi%20Joseph%2C%0A%0AMy%20cut%20list%20is%20attached%20%28spreadsheet%2C%20photo%2C%20or%20PDF%29.%0A%0AI%20buy%20lumber%20from%3A%20%0AThe%20job%3A%20%0A%0A" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 22px; background: #1C3A19; color: #FFFFFF; font-weight: 700; border-radius: 6px; text-decoration: none">Send us your real cut list</a>
+</div>
+<div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<div style="background: #F5F5F2; border-radius: 8px; padding: 24px 24px 16px; display: flex; flex-direction: column; gap: 10px">
+<div id="wl-elev" role="img" aria-label="Framing elevation" style="position: relative; width: 100%; margin: 0 auto"></div>
+<span id="wl-caption" style="font-size: 13px; color: #6B756B"></span>
+</div>
+<div class="wl-stats" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="border: 1.5px solid #DCDDD6; border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; color: #6B756B">Lumber to buy</span><span id="wl-opt-ft" class="wl-stat-num" style="font-stretch: 115%; font-size: 30px; font-weight: 800; color: #1C3A19"></span><span id="wl-base-ft" style="font-size: 13px; color: #4F5A50"></span></div>
+<div style="border: 1.5px solid #DCDDD6; border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; color: #6B756B">Waste</span><span id="wl-opt-waste" class="wl-stat-num" style="font-stretch: 115%; font-size: 30px; font-weight: 800; color: #1C3A19"></span><span id="wl-base-waste" style="font-size: 13px; color: #4F5A50"></span></div>
+<div style="border: 1.5px solid #DCDDD6; border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; color: #6B756B">Boards</span><span id="wl-boards" class="wl-stat-num" style="font-stretch: 115%; font-size: 30px; font-weight: 800; color: #1C3A19"></span><span id="wl-mix" style="font-size: 13px; color: #4F5A50"></span></div>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 32px">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-stretch: 115%; font-size: 19px; font-weight: 800; color: #1C3A19">Cutting plan</h3>
+<div id="wl-plan" style="display: flex; flex-direction: column; gap: 12px"></div>
+<span id="wl-more" hidden style="font-size: 13px; color: #6B756B"></span>
+<span style="font-size: 13px; color: #6B756B">Dashed lines are cuts. Gray ends are offcuts. Demo optimizer, single job.</span>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-stretch: 115%; font-size: 19px; font-weight: 800; color: #1C3A19">Cut list</h3>
+<table style="width: 100%; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left; color: #6B756B"><th style="padding: 8px 6px; font-weight: 600">Board</th><th style="padding: 8px 6px; font-weight: 600">Size</th><th style="padding: 8px 6px; font-weight: 600">Length</th><th style="padding: 8px 6px; font-weight: 600; text-align: right">Qty</th></tr></thead>
+<tbody id="wl-rows"></tbody>
+</table>
+</div>
+</div>
+</div>
+<noscript><p style="font-size: 15px">Wall Lab needs JavaScript turned on.</p></noscript>
+</div>
+</section>
+
+<section class="sec" aria-label="Then your yard takes it from there" style="background: #F5F5F2; padding: 96px 32px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px">
+<h2 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 40px; line-height: 1.05; color: #1C3A19; max-width: 760px">Then your yard takes it from there.</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px"><span class="big-num" style="font-stretch: 125%; font-size: 56px; font-weight: 800; color: #D4B57E; line-height: 1">1</span><h3 style="margin: 0; font-size: 24px; color: #1C3A19">Cut and labeled</h3><p style="margin: 0; font-size: 17px; line-height: 1.65; color: #3B463C">The Structmill machine at your lumberyard cuts each piece and marks what it is and where it goes.</p></div>
+<div style="flex: 1 1 520px; min-width: 0; display: flex; justify-content: center">
+<div style="background: #FFFFFF; border: 2px dashed #1C3A19; border-radius: 4px; padding: 22px 26px; display: flex; flex-direction: column; gap: 4px; min-width: 300px" class="label-card">
+<span style="font-stretch: 125%; font-size: 30px; font-weight: 800; color: #1C3A19">STUD</span>
+<span style="font-size: 17px; font-weight: 600">2x4 · 92-5/8"</span>
+<span style="font-size: 15px">Wall A · Bundle 1 · 7 of 24</span>
+<span style="font-size: 13px; color: #6B756B">Your yard · Your project</span>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px"><span class="big-num" style="font-stretch: 125%; font-size: 56px; font-weight: 800; color: #D4B57E; line-height: 1">2</span><h3 style="margin: 0; font-size: 24px; color: #1C3A19">Bundled by wall and floor</h3><p style="margin: 0; font-size: 17px; line-height: 1.65; color: #3B463C">Everything for Wall A in one bundle. Open it, build it, move to the next.</p></div>
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<div style="height: 30px; width: 100%; border-radius: 2px; background: repeating-linear-gradient(90deg, #E3C998 0 34px, #D9BC86 34px 37px, #E6CEA2 37px 80px); box-shadow: 0 6px 0 -2px #B89C69, 0 12px 0 -4px #8C7A58"></div>
+<div style="height: 30px; width: 55%; border-radius: 2px; margin-top: 10px; background: repeating-linear-gradient(90deg, #E3C998 0 34px, #D9BC86 34px 37px, #E6CEA2 37px 80px); box-shadow: 0 6px 0 -2px #B89C69, 0 12px 0 -4px #8C7A58"></div>
+<div style="height: 30px; width: 44%; border-radius: 2px; margin-top: 10px; background: repeating-linear-gradient(90deg, #E3C998 0 34px, #D9BC86 34px 37px, #E6CEA2 37px 80px); box-shadow: 0 6px 0 -2px #B89C69, 0 12px 0 -4px #8C7A58"></div>
+<span style="font-size: 14px; color: #6B756B; padding-top: 12px">Bundle 1 · Wall A · plates, studs, header</span>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px"><span class="big-num" style="font-stretch: 125%; font-size: 56px; font-weight: 800; color: #D4B57E; line-height: 1">3</span><h3 style="margin: 0; font-size: 24px; color: #1C3A19">Delivered ready to frame</h3><p style="margin: 0; font-size: 17px; line-height: 1.65; color: #3B463C">Your crew builds instead of measuring and sawing.</p></div>
+<div style="flex: 1 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="background: #FFFFFF; border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; color: #1C3A19">Less waste</span><span style="font-size: 14px; color: #4F5A50">Fewer boards bought, less in the dumpster</span></div>
+<div style="background: #FFFFFF; border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; color: #1C3A19">Less time</span><span style="font-size: 14px; color: #4F5A50">Frame instead of measure and cut</span></div>
+<div style="background: #FFFFFF; border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; color: #1C3A19">Safer site</span><span style="font-size: 14px; color: #4F5A50">Less time next to a running blade</span></div>
+<div style="background: #FFFFFF; border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; color: #1C3A19">Precision</span><span style="font-size: 14px; color: #4F5A50">Every piece cut to the plan</span></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="sec" style="padding: 96px 32px">
+<div style="max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
+<h2 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 36px; color: #1C3A19">Questions builders ask</h2>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #DCDDD6">
+<details open style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 600">What is Structmill, and what do I get?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">Structmill is a cutting machine and software your lumberyard installs. You send your cut list, and your framing shows up cut to length, labeled, and bundled by wall. You buy less lumber, waste less, cut less on site, and every piece matches the plan.</p></details>
+<details style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 600">How much does it cost me?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">Planning with Structmill is free. Pre-cut packages are sold by your lumberyard, which sets the price for the service the same way it prices your lumber.</p></details>
+<details style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 600">What if my yard doesn't have a Structmill machine?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">Send us your cut list anyway. We'll send back the optimized cutting plan, and if you tell us where you buy, we'll take your request to your yard.</p></details>
+<details style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 600">Who makes the cut list?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">You can send us a spreadsheet, a photo, or a PDF, or have your yard's counter build it from your plans. Either way, nothing is cut until you approve the final list. Structmill optimizes and cuts exactly what you approved.</p></details>
+<details style="border-bottom: 1px solid #DCDDD6; padding: 22px 0"><summary style="font-size: 19px; font-weight: 600">What jobs does it work for?</summary><p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: #3B463C">Framing with standard 2-by lumber: walls, floors, additions, and new homes.</p></details>
+</div>
+</div>
+</section>
+
+<section class="sec" id="send" style="background: #E3C998; padding: 80px 32px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+<h2 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 44px; line-height: 1.05; color: #1C3A19; max-width: 720px">See your next build as a pre-cut package.</h2>
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 420px"><a href="mailto:joseph@structmill.com?subject=My%20cut%20list&amp;body=Hi%20Joseph%2C%0A%0AMy%20cut%20list%20is%20attached%20%28spreadsheet%2C%20photo%2C%20or%20PDF%29.%0A%0AI%20buy%20lumber%20from%3A%20%0AThe%20job%3A%20%0A%0A" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 60px; padding: 0 34px; background: #1C3A19; color: #FFFFFF; font-weight: 700; font-size: 18px; border-radius: 6px; text-decoration: none">Email your cut list</a><span class="cta-note" style="color: #3B463C">Attach a spreadsheet, photo, or PDF, even handwritten, and tell us where you buy lumber. We'll send back the optimized cutting plan, free.</span></div>
+</div>
+</section>
+
+<footer class="sec" style="border-top: 1px solid #DCDDD6; padding: 48px 32px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; font-size: 15px; color: #4F5A50">
+<img class="logo" src="/assets/structmill-lockup.svg" alt="Structmill" width="293" height="28">
+<div style="display: flex; flex-wrap: wrap; gap: 24px"><a href="mailto:joseph@structmill.com">joseph@structmill.com</a><span>Morgantown, West Virginia</span></div>
+</div>
+</footer>
+
+</div>
+<script src="/assets/wall-lab.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+/* Structmill v3.0 — shared styles. Page layout lives inline; this file holds
+   the base, focus states, and the phone overrides. */
+@font-face{font-family:Archivo;font-style:normal;font-display:swap;font-weight:100 900;font-stretch:62% 125%;src:url(/assets/fonts/archivo-variable.woff2) format('woff2-variations'),url(/assets/fonts/archivo-variable.woff2) format('woff2')}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF}
+img,svg{max-width:100%}
+a{color:#1C3A19}a:hover{color:#2D5A27}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #6FA15C;outline-offset:3px}
+summary{cursor:pointer}
+details>summary{list-style-position:outside}
+.logo{height:28px;width:auto;display:block}
+.cta-note{font-size:14px;color:#4F5A50;line-height:1.5}
+.scroll-hint{display:none;font-size:13px;color:#6B756B}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Tablet and down */
+@media (max-width:900px){
+  .flow-inner{min-width:0!important}
+  .flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}
+  .flow-grid>div{min-height:0!important}
+  .flow-arrow,.flow-lanes{display:none!important}
+}
+
+/* Phone */
+@media (max-width:640px){
+  .sec{padding-left:20px!important;padding-right:20px!important}
+  section.sec{padding-top:56px!important;padding-bottom:56px!important}
+  section.sec.hero{padding-top:40px!important;padding-bottom:40px!important}
+  section.sec.flush-top{padding-top:0!important}
+  nav.sec{padding-top:14px!important;padding-bottom:14px!important;gap:12px!important}
+  .nav-links{gap:6px 18px!important;font-size:14px!important;width:100%}
+  .nav-links .nav-cta{min-height:40px!important;padding:0 14px!important;margin-left:auto}
+  .logo{height:22px}
+  footer.sec{padding-top:32px!important;padding-bottom:32px!important}
+  h2{font-size:clamp(28px,7.4vw,36px)!important}
+  .big-num{font-size:40px!important}
+  .flow-grid{grid-template-columns:1fr!important;gap:10px!important}
+  .flow-grid>div{padding:16px 18px!important}
+  .flow-grid .flow-pic{display:none!important}
+  .door{min-height:88px!important;padding:0 22px!important}
+  .door .door-title{font-size:23px!important}
+  .label-card{min-width:0!important;width:100%}
+  .scroll-hint{display:block}
+  .wl{padding:16px!important;gap:20px!important}
+  .wl-stats{grid-template-columns:1fr 1fr!important}
+  .wl-stats>div:last-child{grid-column:span 2}
+  .wl-stat-num{font-size:24px!important}
+  .wl-form{flex-basis:100%!important;min-width:0!important}
+  .wl-plan-row{grid-template-columns:48px minmax(0,1fr)!important}
+  .wl table{font-size:13px!important}
+  .pilot-list li{padding-right:0!important}
+}
