@@ -572,27 +572,27 @@ function baseline(pieces) {
   };
 }
 function metrics(pieces) {
-  const gg = pack(pieces);
+  const bfd = pack(pieces);
   const totalCuts = pieces.reduce((s, p) => s + p.qty, 0);
-  const ggStock = gg.reduce((s, b) => s + b.stock, 0);
-  const ggUsed = pieces.reduce((s, p) => s + p.len * p.qty, 0);
-  const ggWaste = ggStock ? (ggStock - ggUsed) / ggStock * 100 : 0;
+  const bfdStock = bfd.reduce((s, b) => s + b.stock, 0);
+  const bfdUsed = pieces.reduce((s, p) => s + p.len * p.qty, 0);
+  const bfdWaste = bfdStock ? (bfdStock - bfdUsed) / bfdStock * 100 : 0;
   const bl = baseline(pieces);
-  const ggByStock = {};
-  gg.forEach(b => {
-    ggByStock[b.stock] = (ggByStock[b.stock] || 0) + 1;
+  const bfdByStock = {};
+  bfd.forEach(b => {
+    bfdByStock[b.stock] = (bfdByStock[b.stock] || 0) + 1;
   });
-  const stockRows = STOCK.filter(s => bl.byStock[s] || ggByStock[s]).map(s => ({
+  const stockRows = STOCK.filter(s => bl.byStock[s] || bfdByStock[s]).map(s => ({
     stock: s,
     without: bl.byStock[s] || 0,
-    with: ggByStock[s] || 0
+    with: bfdByStock[s] || 0
   }));
   return {
     totalCuts,
-    ggBoards: gg.length,
+    bfdBoards: bfd.length,
     blBoards: bl.boards,
-    ggWaste,
-    wasteSaved: Math.max(0, bl.waste - ggWaste),
+    bfdWaste,
+    wasteSaved: Math.max(0, bl.waste - bfdWaste),
     stockRows
   };
 }
@@ -606,7 +606,7 @@ function App() {
     className: "panel"
   }, React.createElement("div", {
     className: "strip"
-  }, React.createElement("div", null, "PROJECT ", React.createElement("b", null, p.name)), React.createElement("div", null, "PIECES ", React.createElement("b", null, m.totalCuts)), React.createElement("div", null, "BOARDS ", React.createElement("b", null, m.ggBoards)), React.createElement("div", null, "SOLVER ", React.createElement("b", null, "BFD")), React.createElement("div", null, "KERF ", React.createElement("b", null, "0.125"), "\"")), React.createElement("div", {
+  }, React.createElement("div", null, "PROJECT ", React.createElement("b", null, p.name)), React.createElement("div", null, "PIECES ", React.createElement("b", null, m.totalCuts)), React.createElement("div", null, "BOARDS ", React.createElement("b", null, m.bfdBoards)), React.createElement("div", null, "SOLVER ", React.createElement("b", null, "BFD")), React.createElement("div", null, "KERF ", React.createElement("b", null, "0.125"), "\"")), React.createElement("div", {
     className: "body"
   }, React.createElement("div", {
     className: "lbl"
@@ -714,7 +714,7 @@ function App() {
     className: "k"
   }, "CUTS MADE ON SITE")), React.createElement("div", null, React.createElement("div", {
     className: "v"
-  }, m.ggWaste.toFixed(1), "%"), React.createElement("div", {
+  }, m.bfdWaste.toFixed(1), "%"), React.createElement("div", {
     className: "k"
   }, "MATERIAL WASTE", m.wasteSaved > 0 ? " · −" + m.wasteSaved.toFixed(1) + " PTS" : ""))), React.createElement("div", {
     className: "lbl",
@@ -763,7 +763,7 @@ function App() {
     style: {
       color: "var(--moss-lit)"
     }
-  }, React.createElement("span", null, "TOTAL"), React.createElement("span", null, m.ggBoards)))), React.createElement("div", {
+  }, React.createElement("span", null, "TOTAL"), React.createElement("span", null, m.bfdBoards)))), React.createElement("div", {
     className: "lbl",
     style: {
       marginTop: 22

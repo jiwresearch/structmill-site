@@ -337,7 +337,7 @@ function App() {
     style: {
       color: sent ? "var(--moss-lit)" : "var(--amber)"
     }
-  }, sent ? "YARD" : "JOBSITE")), React.createElement("div", null, "QUEUE ", React.createElement("b", null, cuts.length), " pc"), React.createElement("div", null, "BOARDS ", React.createElement("b", null, boards.length)), React.createElement("div", null, "SOLVER ", React.createElement("b", null, "BFD")), React.createElement("div", null, "KERF ", React.createElement("b", null, "0.125"), "\"")), React.createElement("div", {
+  }, sent ? "YARD" : "JOBSITE")), React.createElement("div", null, "CUTS ", React.createElement("b", null, cuts.length), " pc"), React.createElement("div", null, "BOARDS ", React.createElement("b", null, boards.length)), React.createElement("div", null, "SOLVER ", React.createElement("b", null, "BFD")), React.createElement("div", null, "KERF ", React.createElement("b", null, "0.125"), "\"")), React.createElement("div", {
     className: "body"
   }, React.createElement("div", {
     className: "lbl"
@@ -422,7 +422,7 @@ function App() {
       fontSize: 12.5,
       color: "var(--dim)"
     }
-  }, "Queue empty. Add a piece above."), boards.length > 0 && React.createElement("div", {
+  }, "No cuts yet. Add a piece above."), boards.length > 0 && React.createElement("div", {
     className: "readout",
     style: {
       marginTop: 14
