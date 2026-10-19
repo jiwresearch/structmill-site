@@ -174,13 +174,31 @@
 </section>
 
 <footer class="sec" style="border-top: 1px solid #DCDDD6; padding: 48px 32px">
-<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; font-size: 15px; color: #4F5A50">
+<div style="max-width: 1240px; margin: 0 auto">
+<div class="upd-foot">
+<div class="upd-foot-copy"><h2 style="margin: 0; font-stretch: 115%; font-size: 22px; font-weight: 800; color: #1C3A19">Follow along</h2><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #4F5A50">A short monthly email from Joseph on what Structmill is building, where we are, and where you can help. No spam. Unsubscribe anytime.</p></div>
+<div class="upd-foot-form"><form class="upd" data-updates-form data-list="structmill" novalidate>
+<label for="upd-email-2"><span>Email</span><input id="upd-email-2" type="email" name="email" autocomplete="email" inputmode="email" required></label>
+<label for="upd-name-2"><span>First name <span class="opt">(optional)</span></span><input id="upd-name-2" type="text" name="metadata__first_name" autocomplete="given-name"></label>
+<label for="upd-role-2"><span>I'm a… <span class="opt">(optional)</span></span><select id="upd-role-2" name="metadata__role" data-role><option value="">Choose one</option><option value="lumberyard">Lumberyard</option><option value="contractor">Contractor</option><option value="investor">Investor</option><option value="advisor-supporter">Advisor or supporter</option><option value="other">Other</option></select></label>
+<button type="submit">Get updates</button>
+<input type="hidden" name="tag" value="" data-role-tag>
+<input type="hidden" name="tag" value="site-footer">
+<input type="hidden" name="embed" value="1">
+<div class="upd-trap" aria-hidden="true"><label for="upd-trap-2">Leave this empty<input id="upd-trap-2" type="text" name="website_confirm" tabindex="-1" autocomplete="off" data-trap></label></div>
+<p class="upd-error" role="alert" data-error></p>
+</form>
+<p class="upd-success" role="status" tabindex="-1" hidden data-success>You're on the list. First update lands next month.</p><p class="upd-note">We use your email only to send these updates.</p></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; font-size: 15px; color: #4F5A50">
 <img class="logo" src="/assets/structmill-lockup.svg" alt="Structmill" width="293" height="28">
 <div style="display: flex; flex-wrap: wrap; gap: 24px"><a href="mailto:joseph@structmill.com">joseph@structmill.com</a><span>Morgantown, West Virginia</span></div>
+</div>
 </div>
 </footer>
 
 </div>
 <script src="/assets/wall-lab.js" defer></script>
+<script src="/assets/updates.js" defer></script>
 </body>
 </html>

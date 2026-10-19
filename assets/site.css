@@ -51,3 +51,26 @@ details>summary{list-style-position:outside}
   .wl table{font-size:13px!important}
   .pilot-list li{padding-right:0!important}
 }
+
+/* Founder updates signup (v3.1) */
+.upd{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;align-items:end;margin:0}
+.upd label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#1F2A20}
+.upd label .opt{font-weight:400;color:#6B756B}
+.upd input,.upd select{min-height:48px;padding:0 14px;background:#FFFFFF;border:1.5px solid #B9BFB6;border-radius:6px;font:16px Archivo,system-ui,sans-serif;color:#1F2A20;width:100%}
+.upd select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231C3A19' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.upd input:focus-visible,.upd select:focus-visible{outline:3px solid #6FA15C;outline-offset:1px}
+.upd input[aria-invalid=true]{border-color:#A3401F}
+.upd button{min-height:48px;padding:0 24px;border:none;border-radius:6px;background:#1C3A19;color:#FFFFFF;font:700 16px Archivo,system-ui,sans-serif;cursor:pointer}
+.upd button:hover{background:#2D5A27}
+.upd button:disabled{opacity:.7;cursor:default}
+.upd .upd-error{grid-column:1/-1;margin:0;font-size:14px;color:#A3401F;min-height:0}
+.upd .upd-error:empty{display:none}
+.upd .upd-trap{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.upd-success{font-size:17px;font-weight:600;color:#1C3A19;padding:14px 0;outline:none}
+.upd-note{margin:0;font-size:13px;line-height:1.5;color:#6B756B}
+.upd-foot{display:flex;flex-wrap:wrap;gap:20px 48px;align-items:flex-start;justify-content:space-between;padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid #DCDDD6}
+.upd-foot-copy{flex:1 1 260px;display:flex;flex-direction:column;gap:6px}
+.upd-foot-form{flex:2 1 520px;min-width:0;display:flex;flex-direction:column;gap:10px}
+@media (max-width:640px){.upd{grid-template-columns:1fr}.upd button{width:100%}}
+.upd[hidden],.upd-success[hidden]{display:none}
+.upd-foot .upd{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
