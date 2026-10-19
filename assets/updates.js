@@ -35,6 +35,21 @@
 
     frame.addEventListener('load', function () { if (waiting) { waiting = false; done(); } });
 
+    // Invite links: /updates/?invite=1&email=…&name=…&role=lumberyard prefill the
+    // first form on the page and tag the signup "invited". The person still clicks the button.
+    if (i === 0 && window.URLSearchParams) {
+      var q = new URLSearchParams(location.search);
+      if (q.has('invite') || q.has('email')) {
+        if (q.get('email')) email.value = q.get('email');
+        var nameField = form.querySelector('input[name="metadata__first_name"]');
+        if (nameField && q.get('name')) nameField.value = q.get('name');
+        if (role && q.get('role') && role.querySelector('option[value="' + q.get('role').replace(/[^a-z-]/g, '') + '"]')) role.value = q.get('role');
+        var inv = document.createElement('input');
+        inv.type = 'hidden'; inv.name = 'tag'; inv.value = 'invited';
+        form.appendChild(inv);
+      }
+    }
+
     form.addEventListener('submit', function (e) {
       error.textContent = '';
       email.removeAttribute('aria-invalid');
