@@ -153,7 +153,7 @@
       return '<tr style="border-top:1px solid #E6E7E1"><td style="padding:8px 6px;font-weight:600">' + row.role + '</td><td style="padding:8px 6px">' + row.dim + '</td><td style="padding:8px 6px">' + fmt(row.len) + '</td><td style="padding:8px 6px;text-align:right">' + row.qty + '</td></tr>';
     }).join('');
 
-    var body = 'Hi Joseph,\n\nI tried Wall Lab (' + s.len + "' wall, " + s.height + "' tall, " + s.sp + '" on center, ' + n + ' window' + (n === 1 ? '' : 's') + ').\n\nMy cut list is attached. I buy lumber from: \n\n';
+    var body = 'Hello,\n\nI tried Wall Lab (' + s.len + "' wall, " + s.height + "' tall, " + s.sp + '" on center, ' + n + ' window' + (n === 1 ? '' : 's') + ').\n\nMy cut list is attached. I buy lumber from: \n\n';
     $('wl-send').href = 'mailto:joseph@structmill.com?subject=' + encodeURIComponent('My cut list') + '&body=' + encodeURIComponent(body);
   }
 
